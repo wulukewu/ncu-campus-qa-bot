@@ -2,10 +2,10 @@
 """
 crawl_announcements.py
 
-Crawl announcement pages for multiple categories until the end.
+Crawl announcement pages for multiple categories and extract to CSV.
 
 Usage:
-    python crawl_announcements.py [--max-pages N] [--output-dir OUT] [category1 category2 ...]
+    python app.py [--max-pages N] [--output announcements.csv] [category1 category2 ...]
 
 If no categories are provided the script will crawl all predefined categories.
 
@@ -19,7 +19,8 @@ import os
 import argparse
 import time
 import re
-from typing import List
+import csv
+from typing import List, Tuple
 
 
 DEFAULT_CATEGORIES = [
@@ -31,21 +32,6 @@ DEFAULT_CATEGORIES = [
     "課程訊息",
     "系辦公告",
 ]
-
-
-def slugify(name: str) -> str:
-    # Very small slug: replace spaces and slashes with underscore
-    return re.sub(r"[^0-9A-Za-z\x00-\x7F]+", "_", name).strip("_") or "cat"
-
-
-def safe_dirname(name: str) -> str:
-    """Preserve Unicode category names, but remove path separators."""
-    cleaned = name.replace("/", "_").replace("\\", "_").strip()
-    # Also guard against os-specific separators
-    cleaned = cleaned.replace(os.sep, "_")
-    if os.altsep:
-        cleaned = cleaned.replace(os.altsep, "_")
-    return cleaned or "category"
 
 
 def fetch(url: str, timeout: int = 15, headers=None):
@@ -103,6 +89,44 @@ def fetch(url: str, timeout: int = 15, headers=None):
         return None, None, url
 
 
+def parse_announcements_from_html(html: bytes, category: str) -> List[Tuple[str, str, str]]:
+    """
+    Parse HTML content and extract announcements.
+    Returns a list of (category, title, date) tuples.
+    """
+    text = html.decode("utf-8", errors="ignore")
+
+    # Try BeautifulSoup for accurate parsing
+    try:
+        from bs4 import BeautifulSoup
+
+        soup = BeautifulSoup(text, "html.parser")
+        links = soup.find_all("a", class_="link", href=True)
+        results = []
+        for link in links:
+            title_div = link.find("div", class_="item-title")
+            time_div = link.find("div", class_="item-time")
+            if title_div and time_div:
+                title = title_div.get_text(strip=True)
+                date = time_div.get_text(strip=True)
+                results.append((category, title, date))
+        return results
+    except Exception:
+        # Fallback: regex-based extraction
+        results = []
+        pattern = re.compile(
+            r'<a[^>]*class="link"[^>]*>.*?'
+            r'<div class="item-title">([^<]+)</div>.*?'
+            r'<div class="item-time">([^<]+)</div>',
+            re.DOTALL,
+        )
+        for match in pattern.finditer(text):
+            title = match.group(1).strip()
+            date = match.group(2).strip()
+            results.append((category, title, date))
+        return results
+
+
 def page_has_announcements(html: bytes) -> bool:
     text = html.decode("utf-8", errors="ignore")
 
@@ -127,13 +151,26 @@ def page_has_announcements(html: bytes) -> bool:
         return bool(re.search(r"/announcement/|announcement", text))
 
 
-def ensure_dir(path: str):
-    os.makedirs(path, exist_ok=True)
+def write_csv(announcements: List[Tuple[str, str, str]], output_path: str):
+    """
+    Write announcements to a CSV file with columns: category, title, date.
+    """
+    try:
+        with open(output_path, "w", newline="", encoding="utf-8") as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(["category", "title", "date"])
+            for cat, title, date in announcements:
+                writer.writerow([cat, title, date])
+        print(f"\nWrote {len(announcements)} announcements to {output_path}")
+    except Exception as e:
+        print(f"Error writing CSV: {e}")
+        raise
 
 
-def crawl(categories: List[str], max_pages: int = 200, output_dir: str = None, delay: float = 0.5):
+def crawl(categories: List[str], max_pages: int = 200, output_csv: str = "announcements.csv", delay: float = 0.5):
     base = "https://www.csie.ncu.edu.tw/announcement/page/{page}/category/{category}"
-    out_base = output_dir or os.path.join(os.path.dirname(__file__), "output")
+    all_announcements = []
+    
     for cat in categories:
         cat_enc = cat
         try:
@@ -142,11 +179,7 @@ def crawl(categories: List[str], max_pages: int = 200, output_dir: str = None, d
         except Exception:
             pass
 
-        # Use human-readable category directory (preserve original name)
-        dirname = safe_dirname(cat)
-        cat_out = os.path.join(out_base, dirname)
-        ensure_dir(cat_out)
-        print(f"Crawling category: {cat} -> {cat_out}")
+        print(f"Crawling category: {cat}")
 
         page = 1
         consecutive_failures = 0
@@ -176,23 +209,28 @@ def crawl(categories: List[str], max_pages: int = 200, output_dir: str = None, d
                 print("   no announcement links found — reached the end")
                 break
 
-            fname = os.path.join(cat_out, f"page_{page}.html")
-            try:
-                with open(fname, "wb") as f:
-                    f.write(content)
-                print(f"   saved {len(content)} bytes -> {fname}")
-            except Exception as e:
-                print(f"   cannot save file {fname}: {e}")
+            # Parse announcements from this page
+            announcements = parse_announcements_from_html(content, cat)
+            all_announcements.extend(announcements)
+            print(f"   extracted {len(announcements)} announcements from page {page}")
 
             page += 1
             time.sleep(delay)
 
+    # Write all collected announcements to CSV
+    if all_announcements:
+        write_csv(all_announcements, output_csv)
+    else:
+        print("\nNo announcements found.")
+    
+    return len(all_announcements)
+
 
 def parse_args(argv: List[str]) -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="Crawl CSIE announcement pages by category and page until no more pages.")
+    p = argparse.ArgumentParser(description="Crawl CSIE announcement pages and export to CSV.")
     p.add_argument("categories", nargs="*", help="Categories to crawl (defaults to all)")
     p.add_argument("--max-pages", type=int, default=200, help="Maximum pages to try per category")
-    p.add_argument("--output-dir", default=None, help="Directory to save pages (default: crawler/csie/output)")
+    p.add_argument("--output", default="announcements.csv", help="Output CSV file path (default: announcements.csv)")
     p.add_argument("--delay", type=float, default=0.5, help="Delay between requests in seconds")
     return p.parse_args(argv[1:])
 
@@ -200,8 +238,8 @@ def parse_args(argv: List[str]) -> argparse.Namespace:
 def main(argv: List[str]) -> int:
     args = parse_args(argv)
     cats = args.categories if args.categories else DEFAULT_CATEGORIES
-    crawl(cats, max_pages=args.max_pages, output_dir=args.output_dir, delay=args.delay)
-    return 0
+    count = crawl(cats, max_pages=args.max_pages, output_csv=args.output, delay=args.delay)
+    return 0 if count > 0 else 1
 
 
 if __name__ == "__main__":
