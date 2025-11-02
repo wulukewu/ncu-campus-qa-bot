@@ -35,7 +35,17 @@ DEFAULT_CATEGORIES = [
 
 def slugify(name: str) -> str:
     # Very small slug: replace spaces and slashes with underscore
-        return re.sub(r"[^0-9A-Za-z\x00-\x7F]+", "_", name).strip("_") or "cat"
+    return re.sub(r"[^0-9A-Za-z\x00-\x7F]+", "_", name).strip("_") or "cat"
+
+
+def safe_dirname(name: str) -> str:
+    """Preserve Unicode category names, but remove path separators."""
+    cleaned = name.replace("/", "_").replace("\\", "_").strip()
+    # Also guard against os-specific separators
+    cleaned = cleaned.replace(os.sep, "_")
+    if os.altsep:
+        cleaned = cleaned.replace(os.altsep, "_")
+    return cleaned or "category"
 
 
 def fetch(url: str, timeout: int = 15, headers=None):
@@ -45,15 +55,43 @@ def fetch(url: str, timeout: int = 15, headers=None):
     except Exception:
         requests = None
 
+    # Try with requests first (with a few retries)
     if requests:
+        session = None
         try:
-            r = requests.get(url, headers=headers, timeout=timeout)
-            return r.status_code, r.content, getattr(r, "url", url)
-        except Exception as e:
-            print(f"requests error for {url}: {e}")
-            return None, None, url
+            session = requests.Session()
+            # Best-effort attach retry adapter if available
+            try:
+                from urllib3.util.retry import Retry  # type: ignore
+                from requests.adapters import HTTPAdapter  # type: ignore
 
-    # fallback to urllib
+                retry = Retry(total=2, backoff_factor=0.5, status_forcelist=[429, 500, 502, 503, 504])
+                adapter = HTTPAdapter(max_retries=retry)
+                session.mount("http://", adapter)
+                session.mount("https://", adapter)
+            except Exception:
+                pass
+
+            last_exc = None
+            for attempt in range(3):
+                try:
+                    r = session.get(url, headers=headers, timeout=timeout)
+                    return r.status_code, r.content, getattr(r, "url", url)
+                except Exception as e:
+                    last_exc = e
+                    print(f"requests attempt {attempt+1}/3 failed for {url}: {e}")
+                    time.sleep(min(1.5, 0.3 * (2 ** attempt)))
+            print(f"requests failed for {url}: {last_exc}; falling back to urllib")
+        except Exception as e:
+            print(f"requests error for {url}: {e}; falling back to urllib")
+        finally:
+            try:
+                if session:
+                    session.close()
+            except Exception:
+                pass
+
+    # Fallback to urllib
     try:
         import urllib.request
         req = urllib.request.Request(url, headers=headers)
@@ -100,13 +138,13 @@ def crawl(categories: List[str], max_pages: int = 200, output_dir: str = None, d
         cat_enc = cat
         try:
             from urllib.parse import quote_plus
-
             cat_enc = quote_plus(cat)
         except Exception:
             pass
 
-        slug = slugify(cat)
-        cat_out = os.path.join(out_base, slug)
+        # Use human-readable category directory (preserve original name)
+        dirname = safe_dirname(cat)
+        cat_out = os.path.join(out_base, dirname)
         ensure_dir(cat_out)
         print(f"Crawling category: {cat} -> {cat_out}")
 
