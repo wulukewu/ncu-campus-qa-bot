@@ -1,0 +1,18 @@
+{
+  "source_page": "https://pdc.adm.ncu.edu.tw/rate_note_reg4.asp",
+  "fetched_at": 1762839485,
+  "results": [
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/board/87_graduate_people_master.pdf",
+      "ok": false,
+      "filename": null,
+      "reason": "status_404"
+    },
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/board/87_graduate_people_univ.pdf",
+      "ok": false,
+      "filename": null,
+      "reason": "status_404"
+    }
+  ]
+}

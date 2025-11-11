@@ -1,0 +1,78 @@
+{
+  "source_page": "https://pdc.adm.ncu.edu.tw/rate_note_reg3.asp",
+  "fetched_at": 1762839485,
+  "results": [
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/board/rate_3/雙主修修習人數統計表.xls",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/statistics/docs/3/雙主修修習人數統計表.xls",
+      "reason": null
+    },
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/board/rate_3/雙主修申請統計表.xls",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/statistics/docs/3/雙主修申請統計表.xls",
+      "reason": null
+    },
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/board/rate_3/雙主修取得統計表.xls",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/statistics/docs/3/雙主修取得統計表.xls",
+      "reason": null
+    },
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/board/rate_3/輔系修習人數統計表.xls",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/statistics/docs/3/輔系修習人數統計表.xls",
+      "reason": null
+    },
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/board/rate_3/輔系申請統計表.xls",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/statistics/docs/3/輔系申請統計表.xls",
+      "reason": null
+    },
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/board/rate_3/輔系取得統計表.xls",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/statistics/docs/3/輔系取得統計表.xls",
+      "reason": null
+    },
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/board/rate_3/學分學程修習人數統計.xls",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/statistics/docs/3/學分學程修習人數統計.xls",
+      "reason": null
+    },
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/board/rate_3/學分學程申請統計表.xls",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/statistics/docs/3/學分學程申請統計表.xls",
+      "reason": null
+    },
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/board/rate_3/學分學程取得統計表.xls",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/statistics/docs/3/學分學程取得統計表.xls",
+      "reason": null
+    },
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/board/rate_3/第二專長修習人數統計表.xls",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/statistics/docs/3/第二專長修習人數統計表.xls",
+      "reason": null
+    },
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/board/rate_3/第二專長申請統計表.xls",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/statistics/docs/3/第二專長申請統計表.xls",
+      "reason": null
+    },
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/board/rate_3/第二專長取得統計表.xls",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/statistics/docs/3/第二專長取得統計表.xls",
+      "reason": null
+    }
+  ]
+}
