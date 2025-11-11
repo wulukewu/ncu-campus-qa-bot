@@ -1,13 +1,7 @@
 {
   "source_page": "https://pdc.adm.ncu.edu.tw/rule/rule114/12/12.html",
-  "fetched_at": 1762830091,
+  "fetched_at": 1762830245,
   "results": [
-    {
-      "url": "https://pdc.adm.ncu.edu.tw/rule/rule114/index.html",
-      "ok": true,
-      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/courses/114/docs/index.html",
-      "reason": null
-    },
     {
       "url": "https://pdc.adm.ncu.edu.tw/rule/rule114/12/12-1.pdf",
       "ok": true,

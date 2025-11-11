@@ -29,17 +29,17 @@ from bs4 import BeautifulSoup
 
 DEFAULT_EXTENSIONS = [
     "pdf",
-    "doc",
-    "docx",
-    "xls",
-    "xlsx",
-    "ppt",
-    "pptx",
-    "txt",
-    "zip",
-    "rar",
-    "htm",
-    "html",
+    # "doc",
+    # "docx",
+    # "xls",
+    # "xlsx",
+    # "ppt",
+    # "pptx",
+    # "txt",
+    # "zip",
+    # "rar",
+    # "htm",
+    # "html",
 ]
 
 
