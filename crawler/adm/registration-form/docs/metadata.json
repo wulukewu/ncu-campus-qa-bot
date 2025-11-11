@@ -1,0 +1,2506 @@
+[
+  {
+    "filename": "form01-01.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-01.pdf",
+    "text": "委託書",
+    "downloaded": true,
+    "size": 164909,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form01-02.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-02.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 63488,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-02.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form01-02.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-02.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 34802,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-02.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-02t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-02t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 117317,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form01-03.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-03.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 29859,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-03.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 國 (U+570B)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.66 ...��保留入學資格新生入學申請表}\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form01-03.docx', '-o', 'docs/form01-03.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form01-03.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-03.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 25624,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-03.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-03t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-03t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 107421,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form01-04.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-04.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 89600,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-04.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form01-04.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-04.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 28471,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-04.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-04t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-04t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 44537,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form01-05.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-05.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 32799,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-05.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 國 (U+570B)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.66 ...��立中央大學休學生復學申請表}\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form01-05.docx', '-o', 'docs/form01-05.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form01-05.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-05.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 29735,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-05.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-05t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-05t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 104982,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form01-06.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-06.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 67072,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-06.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form01-06.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-06.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 36014,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-06.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-06t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-06t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 55683,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form01-08.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-08.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 28743,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-08.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 國 (U+570B)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.66 國\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form01-08.docx', '-o', 'docs/form01-08.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form01-08.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-08.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 27533,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-08.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-08t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-08t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 96866,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form01-09.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-09.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 27757,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-09.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 國 (U+570B)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.72 ...��及研究生畢業離校退費程序單}\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form01-09.docx', '-o', 'docs/form01-09.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form01-09.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-09.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 29943,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-09.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-09t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-09t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 44456,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form01-10t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-10t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 308057,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form01-11.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-11.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 28673,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-11.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 國 (U+570B)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.66 ...��大學學生更改個人資料申請表}\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form01-11.docx', '-o', 'docs/form01-11.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form01-11.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-11.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 30699,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-11.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-11t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-11t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 106834,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form01-11-2t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-11-2t.pdf",
+    "text": "使用說明",
+    "downloaded": true,
+    "size": 257158,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form01-12.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-12.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 35698,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-12.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 姓 (U+59D3)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.101 \\textbf{姓名}\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form01-12.docx', '-o', 'docs/form01-12.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form01-12.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-12.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 33258,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-12.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-12t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-12t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 168709,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form01-14.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-14.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 52736,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-14.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form01-14.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-14.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 26829,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-14.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-15.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-15.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 30888,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-15.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 國 (U+570B)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.72 ...立中央大學學生轉系(所)申請表}\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form01-15.docx', '-o', 'docs/form01-15.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form01-15.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-15.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 34151,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-15.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-15t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-15t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 157931,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form01-16.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-16.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 49664,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-16.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form01-16.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-16.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 41565,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-16.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-17.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-17.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 25054,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-17.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 國 (U+570B)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.71 國\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form01-17.docx', '-o', 'docs/form01-17.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form01-17.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-17.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 23047,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-17.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-18.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-18.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 54784,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-18.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form01-18.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-18.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 31363,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-18.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form1-18t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form1-18t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 104627,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form01-19.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-19.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 29593,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-19.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 國 (U+570B)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.66 國\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form01-19.docx', '-o', 'docs/form01-19.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form01-19.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-19.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 32708,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-19.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-20.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-20.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 66048,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-20.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form01-20.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-20.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 32211,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-20.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form00-06t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form00-06t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 104697,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form01-21.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-21.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 56320,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-21.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form01-21.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-21.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 28997,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-21.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-21t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-21t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 237582,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form01-01.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-01.pdf",
+    "text": "委託書",
+    "downloaded": true,
+    "size": 164909,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form01-24.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-24.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 41984,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-24.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form01-24.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-24.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 19729,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-24.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-25.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-25.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 28575,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-25.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 國 (U+570B)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.66 ...��中央大學學生延緩註冊申請表}\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form01-25.docx', '-o', 'docs/form01-25.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form01-25.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-25.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 24977,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-25.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-26.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-26.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 96256,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-26.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form01-26.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-26.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 31059,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-26.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-27.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-27.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 29943,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-27.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 國 (U+570B)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.65 國\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form01-27.docx', '-o', 'docs/form01-27.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form01-27.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-27.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 26183,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-27.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-28.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-28.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 23572,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-28.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 國 (U+570B)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.65 ...��就學期間服役彈性修業申請書}\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form01-28.docx', '-o', 'docs/form01-28.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form01-28.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-28.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 20838,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-28.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-29.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-29.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 32082,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-29.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 國 (U+570B)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.72 ...��國內大學交換學習學生申請表}\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form01-29.docx', '-o', 'docs/form01-29.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form01-29.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-29.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 24018,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form01-29.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form02-01.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-01.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 73216,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-01.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form02-01.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-01.odt",
+    "text": "odt",
+    "downloaded": true,
+    "size": 32029,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-01.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "20190821.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Register/data/20190821.pdf",
+    "text": "課程抵免修系統使用說明",
+    "downloaded": true,
+    "size": 830894,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form02-02.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-02.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 34843,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-02.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 國 (U+570B)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.66 ...��主修、輔系及學分學程申請表}\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form02-02.docx', '-o', 'docs/form02-02.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form02-02.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-02.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 32936,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-02.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form02-02t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-02t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 59963,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form02-03.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-03.docx",
+    "text": "》.doc",
+    "downloaded": true,
+    "size": 34845,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-03.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 國 (U+570B)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.66 ...��主修、輔系及學分學程申請表}\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form02-03.docx', '-o', 'docs/form02-03.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form02-03.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-03.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 32935,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-03.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form02-03t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-03t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 59463,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form02-04.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-04.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 34841,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-04.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 國 (U+570B)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.66 ...��主修、輔系及學分學程申請表}\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form02-04.docx', '-o', 'docs/form02-04.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form02-04.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-04.odt",
+    "text": "odt",
+    "downloaded": true,
+    "size": 32936,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-04.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form02-04t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-04t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 64536,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form02-06.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-06.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 29605,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-06.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 放 (U+653E)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.65 ...��二專長及學分學程資格申請書}\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form02-06.docx', '-o', 'docs/form02-06.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form02-06.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-06.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 30264,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-06.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form02-07-01.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-07-01.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 119047,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-07-01.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 國 (U+570B)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.72 國\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form02-07-01.docx', '-o', 'docs/form02-07-01.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form02-07-01.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-07-01.pdf",
+    "text": ".pdf",
+    "downloaded": true,
+    "size": 1829540,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form02-07-1f.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-07-1f.pdf",
+    "text": "說明",
+    "downloaded": false,
+    "size": 0,
+    "error": "HTTPSConnectionPool(host='pdc.adm.ncu.edu.tw', port=443): Read timed out. (read timeout=30)"
+  },
+  {
+    "filename": "form01-01.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-01.pdf",
+    "text": "委託書",
+    "downloaded": false,
+    "size": 0,
+    "error": "HTTPSConnectionPool(host='pdc.adm.ncu.edu.tw', port=443): Read timed out. (read timeout=30)"
+  },
+  {
+    "filename": "form02-07-03.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-07-03.docx",
+    "text": ".doc",
+    "downloaded": false,
+    "size": 0,
+    "error": "HTTPSConnectionPool(host='pdc.adm.ncu.edu.tw', port=443): Read timed out. (read timeout=30)"
+  },
+  {
+    "filename": "form02-07-03.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-07-03.pdf",
+    "text": ".pdf",
+    "downloaded": true,
+    "size": 1026076,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form02-07-03.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-07-03.pdf",
+    "text": "",
+    "downloaded": true,
+    "size": 1026076,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form02-07.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-07.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 107520,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-07.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form02-07.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-07.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 41283,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-07.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form01-01.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form01-01.pdf",
+    "text": "委託書",
+    "downloaded": true,
+    "size": 164909,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form02-08.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-08.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 56832,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-08.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form02-08.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-08.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 29906,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-08.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form02-10.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-10.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 69632,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-10.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form02-10.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-10.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 31347,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-10.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form02-10t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-10t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 50680,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form02-11-1.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-11-1.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 56832,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-11-1.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form02-11-1.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-11-1.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 28034,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-11-1.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form02-11-1t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-11-1t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 110811,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form02-11-2.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-11-2.doc",
+    "text": "doc",
+    "downloaded": true,
+    "size": 45056,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-11-2.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form02-11-2.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-11-2.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 24693,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form02-11-2.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form02-12t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-12t.pdf",
+    "text": "中文版說明",
+    "downloaded": true,
+    "size": 1511883,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form02-12en.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form02-12en.pdf",
+    "text": "英文版說明",
+    "downloaded": true,
+    "size": 2044038,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form2-13t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form2-13t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 193519,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form03-01-1.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-01-1.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 78848,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-01-1.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form03-01-1.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-01-1.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 38204,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-01-1.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form03-01-2.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-01-2.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 55808,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-01-2.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form03-01-2.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-01-2.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 29210,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-01-2.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form03-01-3.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-01-3.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 47104,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-01-3.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form03-01-3.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-01-3.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 30433,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-01-3.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form03-02-1.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-02-1.pdf",
+    "text": ".pdf",
+    "downloaded": true,
+    "size": 311253,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form03-02-1.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-02-1.pdf",
+    "text": "",
+    "downloaded": true,
+    "size": 311253,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form03-02-2.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-02-2.pdf",
+    "text": ".pdf",
+    "downloaded": true,
+    "size": 1058580,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form03-02-2.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-02-2.pdf",
+    "text": "",
+    "downloaded": true,
+    "size": 1058580,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form03-04.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-04.doc",
+    "text": ".doc",
+    "downloaded": false,
+    "size": 0,
+    "error": "HTTPSConnectionPool(host='pdc.adm.ncu.edu.tw', port=443): Read timed out. (read timeout=30)"
+  },
+  {
+    "filename": "form03-04.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-04.odt",
+    "text": ".odt",
+    "downloaded": false,
+    "size": 0,
+    "error": "HTTPSConnectionPool(host='pdc.adm.ncu.edu.tw', port=443): Read timed out. (read timeout=30)"
+  },
+  {
+    "filename": "form03-05C.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-05C.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 31232,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-05C.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form03-05C.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-05C.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 13210,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-05C.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form03-05E.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-05E.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 32768,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-05E.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form03-05E.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-05E.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 14192,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-05E.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form03-06C.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-06C.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 32768,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-06C.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form03-06C.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-06C.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 13945,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-06C.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form03-06E.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-06E.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 33280,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-06E.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form03-06E.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-06E.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 15188,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-06E.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form03-07.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-07.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 49664,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-07.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form03-07.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-07.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 26562,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-07.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form03-08C.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-08C.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 35328,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-08C.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form03-08C.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-08C.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 17226,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-08C.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form03-08E.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-08E.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 36352,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-08E.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form03-08E.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-08E.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 17743,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-08E.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form03-10C.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-10C.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 27648,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-10C.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form03-10C.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-10C.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 12491,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-10C.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form03-10E.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-10E.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 28160,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-10E.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form03-10E.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-10E.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 13793,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-10E.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form03-11.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-11.doc",
+    "text": "",
+    "downloaded": true,
+    "size": 113664,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-11.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form03-11t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-11t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 385414,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form03-13-1.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-13-1.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 48640,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-13-1.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form03-13-1.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-13-1.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 30858,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-13-1.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form03-14.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-14.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 49664,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-14.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form03-14.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-14.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 32956,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-14.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form03-15.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-15.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 836459,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-15.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 國 (U+570B)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.81 ...��大學學生論文比對結果報告書}\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form03-15.docx', '-o', 'docs/form03-15.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form03-15.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-15.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 24961,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form03-15.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form03-15f.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form03-15f.pdf",
+    "text": ".pdf",
+    "downloaded": true,
+    "size": 472905,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form04-01-1.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-01-1.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 78848,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-01-1.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form04-01-1.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-01-1.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 38203,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-01-1.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form04-01-2.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-01-2.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 55808,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-01-2.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form04-01-2.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-01-2.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 29215,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-01-2.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form04-01-3.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-01-3.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 47616,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-01-3.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form04-01-3.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-01-3.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 30350,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-01-3.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form04-02-1.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-02-1.pdf",
+    "text": ".pdf",
+    "downloaded": true,
+    "size": 311240,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form04-02-1.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-02-1.pdf",
+    "text": "",
+    "downloaded": true,
+    "size": 311240,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form04-02-2.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-02-2.pdf",
+    "text": ".pdf",
+    "downloaded": true,
+    "size": 1058580,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form04-02-2.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-02-2.pdf",
+    "text": "",
+    "downloaded": true,
+    "size": 1058580,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form04-04.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-04.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 30720,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-04.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form04-04.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-04.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 12877,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-04.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form04-05C.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-05C.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 31744,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-05C.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form04-05C.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-05C.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 13247,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-05C.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form04-05E.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-05E.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 32768,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-05E.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form04-05E.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-05E.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 14141,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-05E.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form04-06C.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-06C.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 32768,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-06C.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form04-06C.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-06C.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 13966,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-06C.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form04-06E.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-06E.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 33280,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-06E.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form04-06E.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-06E.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 15216,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-06E.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form04-07.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-07.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 50688,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-07.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form04-07.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-07.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 26692,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-07.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form04-08C.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-08C.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 35840,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-08C.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form04-08C.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-08C.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 17222,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-08C.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form04-08E.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-08E.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 35840,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-08E.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form04-08E.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-08E.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 17364,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-08E.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form04-10C.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-10C.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 27648,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-10C.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form04-10C.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-10C.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 12481,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-10C.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form04-10E.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-10E.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 27648,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-10E.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form04-10E.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-10E.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 13454,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-10E.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form04-11.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-11.doc",
+    "text": "",
+    "downloaded": true,
+    "size": 80384,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-11.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form04-11t.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-11t.pdf",
+    "text": "流程",
+    "downloaded": true,
+    "size": 385415,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form04-13-1.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-13-1.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 48640,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-13-1.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form04-13-1.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-13-1.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 30868,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-13-1.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form04-14.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-14.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 50176,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-14.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form04-14.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-14.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 32957,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-14.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form04-15.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-15.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 836564,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-15.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: Pandoc died with exitcode \"43\" during conversion: Error producing PDF.\n! LaTeX Error: Unicode character 國 (U+570B)\n               not set up for use with LaTeX.\n\nSee the LaTeX manual or LaTeX Companion for explanation.\nType  H <return>  for immediate help.\n ...                                              \n                                                  \nl.81 ...��大學學生論文比對結果報告書}\n\n; pandoc CLI failed: Command ['/opt/homebrew/bin/pandoc', 'docs/form04-15.docx', '-o', 'docs/form04-15.pdf'] returned non-zero exit status 43; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form04-15.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-15.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 24958,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-15.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form04-15f.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-15f.pdf",
+    "text": ".pdf",
+    "downloaded": true,
+    "size": 472909,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form04-16.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-16.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 23806,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-16.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form04-17.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-17.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 29151,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-17.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form04-18.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form04-18.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 18172,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form04-18.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  }
+]
