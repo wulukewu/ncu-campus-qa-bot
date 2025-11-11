@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Download registration forms from https://pdc.adm.ncu.edu.tw/form_reg.asp
-The actual forms are in an iframe: https://pdc.adm.ncu.edu.tw/Register/form_reg_i.asp
+Download registration forms from https://pdc.adm.ncu.edu.tw/form_course.asp
+The actual forms are in an iframe: https://pdc.adm.ncu.edu.tw/Course/form.html
 """
 
 import argparse
@@ -102,7 +102,7 @@ def convert_file(filepath: Path, remove_original: bool = False) -> dict:
     ext = filepath.suffix.lower()
     
     # Skip already RAG-friendly formats
-    RAG_FRIENDLY_EXTS = {'.pdf', '.csv', '.txt'}
+    RAG_FRIENDLY_EXTS = {".pdf", ".csv", ".txt"}
     if ext in RAG_FRIENDLY_EXTS:
         result["ok"] = True
         result["action"] = "skipped"
@@ -174,12 +174,12 @@ def convert_file(filepath: Path, remove_original: bool = False) -> dict:
                     result["converted"] = str(pdf_path)
                     result["ok"] = True
                     result["action"] = "converted"
-                    result["reason"] = (result["reason"] or "") + ('; ' if result["reason"] else '') + "wkhtmltopdf conversion"
+                    result["reason"] = (result["reason"] or "") + ("; " if result["reason"] else "") + "wkhtmltopdf conversion"
                     if remove_original:
                         filepath.unlink()
                     return result
                 except subprocess.CalledProcessError as e:
-                    result["reason"] = (result["reason"] or "") + ('; ' if result["reason"] else '') + f"wkhtmltopdf failed: {e.stderr}"
+                    result["reason"] = (result["reason"] or "") + ("; " if result["reason"] else "") + f"wkhtmltopdf failed: {e.stderr}"
             
             # Fallback: extract text from HTML to .txt
             try:
@@ -205,11 +205,11 @@ def convert_file(filepath: Path, remove_original: bool = False) -> dict:
                 result["converted"] = str(txt_path)
                 result["ok"] = True
                 result["action"] = "converted"
-                result["reason"] = (result["reason"] or "") + ('; ' if result["reason"] else '') + "html->txt fallback"
+                result["reason"] = (result["reason"] or "") + ("; " if result["reason"] else "") + "html->txt fallback"
                 if remove_original:
                     filepath.unlink()
             except Exception as e:
-                result["reason"] = (result["reason"] or "") + ('; ' if result["reason"] else '') + f"html->txt fallback failed: {e}"
+                result["reason"] = (result["reason"] or "") + ("; " if result["reason"] else "") + f"html->txt fallback failed: {e}"
         
         # Word to PDF (prefer pandoc). Fallback: DOCX->TXT if python-docx available.
         elif ext in [".doc", ".docx", ".odt"]:
@@ -258,7 +258,7 @@ def convert_file(filepath: Path, remove_original: bool = False) -> dict:
                     result["converted"] = str(pdf_path)
                     result["ok"] = True
                     result["action"] = "converted"
-                    result["reason"] = (result["reason"] or "") + ('; ' if result["reason"] else '') + "used pandoc CLI"
+                    result["reason"] = (result["reason"] or "") + ("; " if result["reason"] else "") + "used pandoc CLI"
                     if remove_original:
                         filepath.unlink()
                     return result
@@ -268,7 +268,7 @@ def convert_file(filepath: Path, remove_original: bool = False) -> dict:
                         err_msg += " (binary .doc not supported by pandoc)"
                     elif ext == ".odt" and e.returncode == 43:
                         err_msg += " (pandoc ODT->PDF fails with Chinese chars, needs LaTeX CJK support)"
-                    result["reason"] = (result["reason"] or "") + ('; ' if result["reason"] else '') + f"pandoc CLI failed: {err_msg}"
+                    result["reason"] = (result["reason"] or "") + ("; " if result["reason"] else "") + f"pandoc CLI failed: {err_msg}"
 
             # Fallback: For .docx only, extract text using python-docx
             if ext == ".docx" and HAS_PYTHON_DOCX:
@@ -282,11 +282,11 @@ def convert_file(filepath: Path, remove_original: bool = False) -> dict:
                     result["ok"] = True
                     result["action"] = "converted"
                     extra = " (pandoc not available)" if not tried_pandoc else " (pandoc failed)"
-                    result["reason"] = (result["reason"] or "") + ('; ' if result["reason"] else '') + f"docx->txt fallback{extra}"
+                    result["reason"] = (result["reason"] or "") + ("; " if result["reason"] else "") + f"docx->txt fallback{extra}"
                     if remove_original:
                         filepath.unlink()
                 except Exception as e:
-                    result["reason"] = (result["reason"] or "") + ('; ' if result["reason"] else '') + f"docx->txt fallback failed: {e}"
+                    result["reason"] = (result["reason"] or "") + ("; " if result["reason"] else "") + f"docx->txt fallback failed: {e}"
             else:
                 if not tried_pandoc:
                     result["reason"] = "doc/docx conversion requires pandoc (pypandoc not installed). For .docx, install python-docx for text fallback."
@@ -333,8 +333,8 @@ def extract_links(html_text: str, base_url: str, extensions: list) -> list:
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="Download registration forms from form_reg.asp")
-    parser.add_argument("--url", default="https://pdc.adm.ncu.edu.tw/form_reg.asp",
+    parser = argparse.ArgumentParser(description="Download registration forms from form_course.asp")
+    parser.add_argument("--url", default="https://pdc.adm.ncu.edu.tw/form_course.asp",
                         help="URL of the registration forms page")
     parser.add_argument("--extensions", default="pdf,doc,docx,xls,xlsx,odt",
                         help="Comma-separated list of file extensions to download")

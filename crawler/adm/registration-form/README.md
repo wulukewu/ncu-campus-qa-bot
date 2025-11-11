@@ -1,73 +1,44 @@
 # Registration Form Downloader
 
-Download registration forms from the course administration page: https://pdc.adm.ncu.edu.tw/form_course.asp
+Download registration forms from the NCU Admin website. The script automatically extracts the iframe URL and downloads all linked files.
 
-The page contains an iframe pointing to `./Course/form.html` which lists all the downloadable forms.
+**Main page:** https://pdc.adm.ncu.edu.tw/form_reg.asp  
+**Iframe URL:** https://pdc.adm.ncu.edu.tw/Register/form_reg_i.asp
+
+> 💡 **Need to find iframe URLs?** See [HOW_TO_FIND_IFRAME.md](../HOW_TO_FIND_IFRAME.md) or use `python ../find_iframe.py <url> --insecure`
 
 ## Usage
 
-Default behavior (downloads all forms):
+To run the script, navigate to this directory in your terminal and execute:
 
 ```bash
-# from crawler/adm/registration-form
-python app.py --insecure
+python3 app.py
 ```
 
-Defaults:
+### Options
 
-- URL: https://pdc.adm.ncu.edu.tw/form_course.asp
-- Extensions: pdf, doc, docx, xls, xlsx, odt
-- Output directory: `docs/`
+- `--url`: Specify the URL to crawl (default: `https://pdc.adm.ncu.edu.tw/form_reg.asp`).
+- `--extensions`: Comma-separated file extensions to download (default: `pdf,doc,docx,xls,xlsx,odt`).
+- `--output-dir`: Directory to save files (default: `docs`).
+- `--insecure`: Disable SSL certificate verification.
+- `--convert`: Convert downloaded files to RAG-friendly formats (e.g., `.doc` to `.pdf`, `.xls` to `.csv`).
+- `--remove-originals`: After a successful conversion, remove the original file.
 
-You can override with flags:
+### Dependencies
+
+This script has several optional dependencies for file conversion. To install all dependencies, use the `requirements.txt` file in the parent `crawler` directory:
 
 ```bash
-python app.py --insecure --extensions pdf,docx --output-dir forms
+pip install -r ../requirements.txt 
 ```
-
-## File Conversion for RAG
-
-To convert downloaded files to RAG-friendly formats (Excel→CSV, HTML/Word→PDF):
-
-```bash
-python app.py --insecure --convert
-```
-
-To also remove original files after conversion:
-
-```bash
-python app.py --insecure --convert --remove-originals
-```
-
-**Conversion requirements**
-
-- Excel to CSV (pip): `pandas`, `openpyxl`, plus `xlrd` for legacy `.xls` files.
-- HTML to PDF:
-  - Prefer `weasyprint` (pip) but it also needs system libraries on macOS: `brew install pango cairo gdk-pixbuf libffi`.
-  - Alternative (no Python libs): install `wkhtmltopdf` and the script will use it automatically if WeasyPrint isn't available: `brew install wkhtmltopdf`.
-  - If neither is available, the script falls back to extracting text to `.txt` (supports Big5/UTF-8/GB2312/GBK encoding detection).
-- Word (DOC/DOCX) to PDF:
-  - **Binary `.doc` files**: On macOS, the script tries `textutil` first (built-in) to convert to `.txt`. Note that pandoc does not support legacy binary `.doc` format (exit code 21).
-  - **`.docx` files**: Use `pypandoc` (pip) with `pandoc` binary: `brew install pandoc`.
-  - If `pypandoc` is missing but `pandoc` is installed, the script uses the `pandoc` CLI directly.
-  - If neither is available, `.docx` falls back to plain text using `python-docx` (pip).
-- **ODT files**: Require `pandoc` for conversion to PDF.
-
-Already RAG-friendly formats (`.pdf`, `.csv`, `.txt`) are skipped (counted as `skipped`) rather than re-converted. Conversion logs differentiate `converted`, `skipped`, and `failed`.
+Key dependencies include:
+- `requests`
+- `beautifulsoup4`
+- `certifi`
+- `pandas`, `openpyxl`, `xlrd` (for Excel conversion)
+- `weasyprint` or `wkhtmltopdf` (for HTML conversion)
+- `pypandoc` or `python-docx` (for Word conversion)
 
 ## Output
 
-All files are saved to the `docs/` directory with a `metadata.json` file containing:
-
-- Download status and file size
-- Conversion status (if `--convert` used)
-- Original URLs and link text
-
-## Dependencies
-
-Install from the parent `crawler/requirements.txt`:
-
-```bash
-cd ../../
-pip install -r requirements.txt
-```
+Downloaded files are saved in the `docs/` subdirectory. A `metadata.json` file is also created with details about each downloaded file and any conversions performed.

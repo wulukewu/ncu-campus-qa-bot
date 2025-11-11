@@ -1,0 +1,70 @@
+領取學位證書作業流程：The procedure for receiving the diploma:
+
+確認/辦理事項
+to-do tasks
+說  明Explanation of procedure
+
+1.成績到齊並符合畢業條件
+Step 1 
+Verify that the grades are all submitted and the graduation requirements are met.A.
+(A)請先自行上網查詢成績（ HYPERLINK "http://www.ncu.edu.tw/" 中大首頁→學生身分→ HYPERLINK "http://portal.ncu.edu.tw/login" 中大Portal→輸入帳號密碼→學生相關服務→學籍成績服務→學生學籍成績→查詢成績），若有未繳交情形，請向授課老師查證。
+Please check your grades on NCU　Portal in advance. If the grades are not fully submitted yet, please confirm with the course instructors.
+(B)106年2月20日至6月30日辦理離校之研究生，請於畢業離校當天先至學務處生活輔導組領取操行成績並繳交至註冊組。
+Graduate students leaving the school from February 20th to June 30th, 2017 shall go to Student Services and Dormitory Division for the grades of conduct achievement and submit it to the Register Division on the school-leaving day. Graduate students need to make sure whether their departments have submitted the original form of the Report for Degree Examination, the original form of NCU Application Form for Degree Examination, and the copy form of Verification Letter from Oral Examination Committee to the Section of Registry (These forms should be sealed and submit to the Section of Registry within one week after the form of Verification Letter from Oral Examination Committee is signed.  If the thesis title has been changed, signatures or seals of the advisors are required).
+B.研究生學位考試成績評定報告單正本、學位考試申請表正本、口試委員審定書影本，應於論文口試委員審定書簽署後一週內由系所彌封後送註冊組。請先向系所查證是否已繳送註冊組。學位考試成績評定報告單及口試委員審定書之論文題目如有更改，應請指導老師簽名或蓋章。
+Graduate students need to make sure whether their departments have submitted the original form of the Report for Degree Examination, the original form of NCU Application Form for Degree Examination, and the copy form of Verification Letter from Oral Examination Committee to the Section of Registry (These forms should be sealed and submit to the Section of Registry within one week after the form of Verification Letter from Oral Examination Committee is signed.  If the thesis title has been changed, signatures or seals of the advisors are required).
+2.離校手續 
+Step2
+Complete the school-leaving procedures請利用電子離校系統( HYPERLINK "http://www.ncu.edu.tw/" 中大首頁→學生身分→ HYPERLINK "http://portal.ncu.edu.tw/login" 中大Portal→輸入帳號密碼→學生相關服務→學籍成績服務→學生學籍成績→離校查詢)查詢並完成下列各項畢業離校相關手續：
+Please apply for leaving school on NCU Portal and complete the following school-leaving procedures.
+A.系所辦公室：依系所辦規定辦理。
+Department Office: Meeting the department requirement.
+B.歸還畢業服：無借用者免。
+Returning academic costume if borrowed.
+C.體育器材歸還：無借用者免。
+Returning sports equipment if borrowed.
+D.圖書館權限凍結：依圖書館規定辦理。
+Blocking library account in accordance with the library requirements
+E.電子論文上傳(研究生)：依圖書館規定辦理。
+Uploading electronic copy of thesis/ dissertation in accordance with the library requirements (for graduate students only).
+F.圖書館紙本論文(研究生)：依圖書館規定辦理。
+Submitting paperbound version of thesis/ dissertation in accordance with the library requirements (for graduate students only).
+G.國家圖書館紙本論文(研究生)：應繳交一本平裝本論文至註冊組，並請注意下列事項。
+Submitting a paperbound copy of thesis/ dissertation for the National Library (for graduate students only) to the Register Division. And please mind the following notices:
+(A)論文封面：碩士班《暗紅色》、博士班《墨綠色》。封面之年月，須為畢業離校之年月(非口試舉行或論文完成日期)，於6、7、8月離校者均為106年6月。
+Front cover: crimson for master students, blackish green for doctoral students. The month and year indicating on the cover should be the school-leaving month and year, not the ones of degree examination. For example, students leaving the school on June, July, and August shall put “June, 2017” on the cover.
+(B)論文題目：應與學位考試成績評定報告單之論文題目完全相符。
+The topic of thesis should be the same as the degree examination paper.
+(C)論文格式：請參看HYPERLINK "http://pdc.adm.ncu.edu.tw/Register/form_reg.asp?roadno=53"註冊組網站→表格下載→碩(博)士論文表格→[ HYPERLINK "http://pdc.adm.ncu.edu.tw/Form/form/form03-02-1.doc" 3-02-1(4-02-1) 論文格式條例]及[3 HYPERLINK "http://pdc.adm.ncu.edu.tw/Form/form/form04-02-2.doc" -02-2(4-02-2)學位論文撰寫體例參考]，各院系如有特殊規定者，從其規範。
+Format of the thesis/ dissertation: please refer to the website of Register DivisionformsRelated Form of Master Program[ HYPERLINK "http://pdc.adm.ncu.edu.tw/Form/form/form03-02-1.doc" 3-02-1(4-02-1) Regulations for Thesis Format ] and [3 HYPERLINK "http://pdc.adm.ncu.edu.tw/Form/form/form04-02-2.doc" -02-2(4-02-2) Thesis Format and Example].
+(D)論文須內含中英文提要。
+Chinese and English abstract are both required.
+(E)如您有申請專利或投稿等考量，論文紙本擬延後上架陳列，須加填延後公開申請書並裝訂於論文內頁，電子檔授權書次頁。延後公開申請書可至 HYPERLINK "http://www.lib.ncu.edu.tw/libgridn.php" 圖書館首頁→各項服務→表單下載→HYPERLINK "http://www.lib.ncu.edu.tw/DownLoad-Table/book.doc"博碩士紙本論文延後公開/下架申請書。博、碩士學位論文以公開利用為原則，若延後公開，其期限至多為5年。
+If you wish to postpone the public access of your thesis/ dissertation in paperbound version, please fill in the application form and bind it on the following page of National Central University Library Letter of Authorization for Electronic Theses and Dissertations. To download the application for, for delaying public access, please visit the website of NCU libraryLinksApplication FormsThesis Hard Copy Public Availability Postponement / Removal Request Form. The postponment is limited to at most five years.
+H.境外生離校：依國際處規定辦理。
+School-leaving procedure of overseas students: In accordance with the requirements of Office of International Affairs.
+I.畢業離校問卷調查：依職涯發展中心規定辦理。
+School-leaving questionnaire: In accordance with the Career Center requirements
+3.繳驗學生證
+Step 3
+Submit the student’s ID完成前項全部離校手續後，至註冊組領取學位證書時辦理，驗畢歸還。學生證遺失者，請至HYPERLINK "http://pdc.adm.ncu.edu.tw/Register/form_reg.asp?roadno=53"註冊組網站→表格下載→學籍相關表格→[ HYPERLINK "http://pdc.adm.ncu.edu.tw/Form/form/form01-24.doc" 1-24學生證遺失切結書(離校用)]下載填寫，並完成學生證掛失及註銷/退費程序。
+After finishing the above procedures, please present your student’s ID at the Register Division when receiving the degree diploma. For those who have lost their student’s ID, please go to the website of Register Division forms Related Forms of Student Status download and fill in [ HYPERLINK "http://pdc.adm.ncu.edu.tw/Form/form/form01-24.doc" 1-24 Guarantor Letter of Lost Student ID Card (for school clearance use ]and complete the procedures of reporting the loss, deactivation and refund of the Student ID Card.
+4.領取學位證書
+(須完成上述1~3項)
+Step 4
+Receive degree diploma after finishing the above 3 steps.簽收中英文版學位證書。學生本人無法親自領取學位證書者，請至HYPERLINK "http://pdc.adm.ncu.edu.tw/Register/form_reg.asp?roadno=53"註冊組網站→表格下載→學籍相關表格→[ HYPERLINK "http://pdc.adm.ncu.edu.tw/Form/form/form01-23.doc" 1-23代領學位證書委託書]下載填寫。
+Sign and receive the Chinese and English degree Diploma. For those who cannot receive the diploma personally, please go to the website of Register Division forms Related Forms of Student Status download and fill in [ HYPERLINK "http://pdc.adm.ncu.edu.tw/Form/form/form01-23.doc" 1-23 Authorization Letter ]
+
+
+
+
+
+
+
+
+
+
+1060516
+
+
+
