@@ -18,17 +18,17 @@ CRAWLER_DIRS=(
 )
 
 CRAWLER_CMDS=(
-    "python3 app.py"
-    "python3 app.py"
-    "python3 app.py"
-    "python3 app.py"
-    "python3 app.py"
-    "python3 app.py"
-    "python3 app.py"
-    "python3 app.py"
-    "python3 app.py"
-    "python3 app.py"
-    "python3 app.py"
+    "python app.py"        # adm/course-form
+    "python app.py"        # adm/course-qa
+    "python app.py"        # adm/courses
+    "python app.py"        # adm/freshman
+    "python app.py"        # adm/news
+    "python app.py"        # adm/registration-form
+    "python app.py"        # adm/registration-qa
+    "python app.py"        # adm/regulations
+    "python app.py"        # adm/statistics
+    "python app.py"        # adm/tution
+    "python app.py"        # csie/news
 )
 
 # --- Virtual Environment Setup ---
