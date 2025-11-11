@@ -148,6 +148,8 @@ def main(argv=None):
     parser.add_argument("--outdir", required=False, help="Output directory (created inside this script dir)", default="docs")
     parser.add_argument("--extensions", required=False, help="Comma-separated file extensions to include",
                         default=",".join(DEFAULT_EXTENSIONS))
+    parser.add_argument("--years", required=False, help="Year or range to crawl, e.g. 111-114 or 114 or 111,113",
+                        default="111-114")
     parser.add_argument("--quiet", action="store_true", help="Reduce output")
     parser.add_argument("--insecure", action="store_true", help="Disable SSL certificate verification (insecure)")
     parser.add_argument("--ca-bundle", required=False, help="Path to a custom CA bundle file to use for verification", default=None)
@@ -167,7 +169,32 @@ def main(argv=None):
         "User-Agent": "ncu-campus-qa-bot/1.0 (+https://github.com/)"
     })
 
-    logging.info("Fetching page %s", args.url)
+    # parse years list
+    def parse_years(s: str):
+        s = s.strip()
+        years = set()
+        for part in s.split(','):
+            part = part.strip()
+            if '-' in part:
+                a, b = part.split('-', 1)
+                try:
+                    a_i = int(a)
+                    b_i = int(b)
+                    for y in range(a_i, b_i + 1):
+                        years.add(str(y))
+                except ValueError:
+                    continue
+            else:
+                if part:
+                    years.add(part)
+        return sorted(years)
+
+    years = parse_years(args.years)
+    if not years:
+        logging.error("No valid years parsed from --years=%s", args.years)
+        sys.exit(2)
+
+    logging.info("Will crawl years: %s", ",".join(years))
     # determine verification mode
     if args.insecure:
         verify = False
@@ -176,41 +203,57 @@ def main(argv=None):
     else:
         verify = certifi.where() if certifi is not None else True
 
-    try:
-        r = session.get(args.url, timeout=20, verify=verify)
-        r.raise_for_status()
-    except requests.RequestException as e:
-        logging.error("Failed to fetch %s: %s", args.url, e)
-        sys.exit(2)
-
-    links = extract_links(r.text, args.url)
-    logging.info("Found %d links on the page", len(links))
-
-    # filter and deduplicate
-    to_download = []
-    seen = set()
-    for link in links:
-        if link in seen:
+    all_results = []
+    # For each year, build the page URL and download matching files into out_dir/<year>/
+    for year in years:
+        page_url = args.url.replace("rule114", f"rule{year}")
+        logging.info("Fetching page for year %s: %s", year, page_url)
+        try:
+            r = session.get(page_url, timeout=20, verify=verify)
+            r.raise_for_status()
+        except requests.RequestException as e:
+            logging.error("Failed to fetch %s: %s", page_url, e)
+            all_results.append({"year": year, "source_page": page_url, "results": [], "error": str(e)})
             continue
-        seen.add(link)
-        if has_allowed_ext(link, allowed):
-            to_download.append(link)
 
-    logging.info("Will download %d files (matching extensions)", len(to_download))
+        links = extract_links(r.text, page_url)
+        logging.info("Found %d links on the page for year %s", len(links), year)
 
-    results = []
-    for url in to_download:
-        logging.info("Downloading %s", url)
-        rec = download_file(session, url, out_dir, verify=verify)
-        results.append(rec)
+        # filter and deduplicate
+        to_download = []
+        seen = set()
+        for link in links:
+            if link in seen:
+                continue
+            seen.add(link)
+            if has_allowed_ext(link, allowed):
+                to_download.append(link)
 
-    # save metadata
-    meta_file = out_dir / "metadata.json"
-    with open(meta_file, "w", encoding="utf-8") as fh:
-        json.dump({"source_page": args.url, "fetched_at": int(time.time()), "results": results}, fh, ensure_ascii=False, indent=2)
+        logging.info("Year %s: Will download %d files (matching extensions)", year, len(to_download))
 
-    ok_count = sum(1 for r in results if r.get("ok"))
-    logging.info("Completed: %d succeeded, %d failed. Metadata: %s", ok_count, len(results) - ok_count, meta_file)
+        year_out = out_dir / year
+        year_out.mkdir(parents=True, exist_ok=True)
+
+        results = []
+        for url in to_download:
+            logging.info("[%s] Downloading %s", year, url)
+            rec = download_file(session, url, year_out, verify=verify)
+            results.append(rec)
+
+        meta_file = year_out / "metadata.json"
+        with open(meta_file, "w", encoding="utf-8") as fh:
+            json.dump({"source_page": page_url, "fetched_at": int(time.time()), "results": results}, fh, ensure_ascii=False, indent=2)
+
+        ok_count = sum(1 for r in results if r.get("ok"))
+        logging.info("Year %s completed: %d succeeded, %d failed. Metadata: %s", year, ok_count, len(results) - ok_count, meta_file)
+        all_results.append({"year": year, "source_page": page_url, "results": results})
+
+    # write top-level summary
+    summary_file = out_dir / "summary.json"
+    with open(summary_file, "w", encoding="utf-8") as fh:
+        json.dump({"years": years, "fetched_at": int(time.time()), "data": all_results}, fh, ensure_ascii=False, indent=2)
+
+    logging.info("All done. Summary: %s", summary_file)
 
 
 if __name__ == "__main__":
