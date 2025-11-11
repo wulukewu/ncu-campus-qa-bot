@@ -18,17 +18,17 @@ CRAWLER_DIRS=(
 )
 
 CRAWLER_CMDS=(
-    "python app.py --insecure --convert --remove-originals --no-metadata" # adm/course-form
-    "python app.py --insecure --no-metadata" # adm/course-qa
-    "python app.py --insecure --no-metadata" # adm/courses
-    "python app.py --insecure --no-metadata" # adm/freshman
-    "python app.py" # adm/news
-    "python app.py --insecure --convert --remove-originals --no-metadata" # adm/registration-form
-    "python app.py --insecure --no-metadata" # adm/registration-qa
-    "python app.py --insecure --no-metadata" # adm/regulations
-    "python app.py --insecure --convert --remove-originals --no-metadata" # adm/statistics
-    "python app.py --insecure --no-metadata" # adm/tution
-    "python app.py" # csie/news
+    "python3 app.py --insecure --convert --remove-originals --no-metadata" # adm/course-form
+    "python3 app.py --insecure --no-metadata" # adm/course-qa
+    "python3 app.py --insecure --no-metadata" # adm/courses
+    "python3 app.py --insecure --no-metadata" # adm/freshman
+    "python3 app.py" # adm/news
+    "python3 app.py --insecure --convert --remove-originals --no-metadata" # adm/registration-form
+    "python3 app.py --insecure --no-metadata" # adm/registration-qa
+    "python3 app.py --insecure --no-metadata" # adm/regulations
+    "python3 app.py --insecure --convert --remove-originals --no-metadata" # adm/statistics
+    "python3 app.py --insecure --no-metadata" # adm/tution
+    "python3 app.py" # csie/news
 )
 
 # --- Virtual Environment Setup ---
@@ -77,6 +77,21 @@ for i in "${!CRAWLER_DIRS[@]}"; do
                 dest_path="$CENTRAL_DOCS_DIR/$dest_name"
                 echo "Moving '$local_docs_path' to '$dest_path'"
                 mv "$local_docs_path" "$dest_path"
+
+                # --- Organize files by extension ---
+                echo "Organizing files in '$dest_path'"
+                for file in "$dest_path"/*; do
+                    if [ -f "$file" ]; then
+                        extension="${file##*.}"
+                        if [ "$extension" != "" ] && [ "$extension" != "*" ]; then
+                            ext_dir="$dest_path/$extension"
+                            mkdir -p "$ext_dir"
+                            mv "$file" "$ext_dir/"
+                        fi
+                    fi
+                done
+                # --- End Organize ---
+
             else
                 echo "No 'docs' directory found in '$crawler_dir' to move."
             fi
