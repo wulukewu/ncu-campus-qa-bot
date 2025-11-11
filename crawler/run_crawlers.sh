@@ -46,6 +46,12 @@ pip install -r requirements.txt
 echo "Dependencies installed."
 echo
 
+# --- Central Docs Directory ---
+CENTRAL_DOCS_DIR="docs"
+mkdir -p "$CENTRAL_DOCS_DIR"
+echo "Central docs directory is at: $CENTRAL_DOCS_DIR"
+echo
+
 # --- Crawler Execution ---
 declare -a results
 for i in "${!CRAWLER_DIRS[@]}"; do
@@ -63,6 +69,19 @@ for i in "${!CRAWLER_DIRS[@]}"; do
         if [ $exit_code -eq 0 ]; then
             echo "SUCCESS: Crawler '$crawler_dir' finished."
             results+=("SUCCESS: $crawler_dir")
+
+            # --- Move docs folder ---
+            local_docs_path="$crawler_dir/docs"
+            if [ -d "$local_docs_path" ]; then
+                dest_name=$(echo "$crawler_dir" | tr '/' '_')
+                dest_path="$CENTRAL_DOCS_DIR/$dest_name"
+                echo "Moving '$local_docs_path' to '$dest_path'"
+                mv "$local_docs_path" "$dest_path"
+            else
+                echo "No 'docs' directory found in '$crawler_dir' to move."
+            fi
+            # --- End Move ---
+
         else
             echo "FAILURE: Crawler '$crawler_dir' failed with exit code $exit_code."
             results+=("FAILURE: $crawler_dir (Exit Code: $exit_code)")
