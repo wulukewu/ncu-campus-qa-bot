@@ -1,6 +1,6 @@
 {
   "source_page": "https://pdc.adm.ncu.edu.tw/rate_note_reg1.asp",
-  "fetched_at": 1762842194,
+  "fetched_at": 1762842422,
   "results": [
     {
       "url": "https://pdc.adm.ncu.edu.tw/board/114rate/1141DepStuNum.xls",
@@ -1369,10 +1369,10 @@
       "reason": null,
       "conversion": {
         "original": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/statistics/docs/1/991退學報部.doc",
-        "converted": null,
-        "ok": false,
-        "reason": "pypandoc conversion failed: Invalid input format! Got \"doc\" but expected one of these: biblatex, bibtex, bits, commonmark, commonmark_x, creole, csljson, csv, djot, docbook, docx, dokuwiki, endnotexml, epub, fb2, gfm, haddock, html, ipynb, jats, jira, json, latex, man, markdown, markdown_github, markdown_mmd, markdown_phpextra, markdown_strict, mdoc, mediawiki, muse, native, odt, opml, org, pod, ris, rst, rtf, t2t, textile, tikiwiki, tsv, twiki, typst, vimwiki, xml; pandoc CLI failed: Command '['/opt/homebrew/bin/pandoc', '/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/statistics/docs/1/991退學報部.doc', '-o', '/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/statistics/docs/1/991退學報部.pdf']' returned non-zero exit status 21.",
-        "action": "failed"
+        "converted": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/statistics/docs/1/991退學報部.txt",
+        "ok": true,
+        "reason": "textutil conversion to txt (binary .doc)",
+        "action": "converted"
       }
     },
     {

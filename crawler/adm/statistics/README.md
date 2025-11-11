@@ -38,11 +38,12 @@ python app.py --insecure --convert --remove-originals
 - Excel to CSV (pip): `pandas`, `openpyxl`, plus `xlrd` for legacy `.xls` files.
 - HTML to PDF:
   - Prefer `weasyprint` (pip) but it also needs system libraries on macOS: `brew install pango cairo gdk-pixbuf libffi`.
-  - Alternative (no Python libs): install `wkhtmltopdf` and the script will use it automatically if WeasyPrint isn’t available: `brew install wkhtmltopdf`.
-  - If neither is available, the script falls back to extracting text to `.txt`.
+  - Alternative (no Python libs): install `wkhtmltopdf` and the script will use it automatically if WeasyPrint isn't available: `brew install wkhtmltopdf`.
+  - If neither is available, the script falls back to extracting text to `.txt` (supports Big5/UTF-8/GB2312/GBK encoding detection).
 - Word (DOC/DOCX) to PDF:
-  - Prefer `pypandoc` (pip) with `pandoc` binary: `brew install pandoc`.
+  - **Binary `.doc` files**: On macOS, the script tries `textutil` first (built-in) to convert to `.txt`. Note that pandoc does not support legacy binary `.doc` format (exit code 21).
+  - **`.docx` files**: Use `pypandoc` (pip) with `pandoc` binary: `brew install pandoc`.
   - If `pypandoc` is missing but `pandoc` is installed, the script uses the `pandoc` CLI directly.
-  - If neither is available, `.docx` falls back to plain text using `python-docx` (pip). Legacy `.doc` needs `pandoc`.
+  - If neither is available, `.docx` falls back to plain text using `python-docx` (pip).
 
 Already RAG-friendly formats (`.pdf`, `.csv`, `.txt`) are skipped (counted as `skipped`) rather than re-converted. Conversion logs differentiate `converted`, `skipped`, and `failed`.

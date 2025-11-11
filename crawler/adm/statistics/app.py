@@ -275,6 +275,26 @@ def convert_file(filepath: Path, remove_original: bool = False) -> dict:
         
         # Word to PDF (prefer pandoc). Fallback: DOCX->TXT if python-docx available.
         elif ext in [".doc", ".docx"]:
+            # Try textutil on macOS first for binary .doc files (pandoc doesn't support binary .doc)
+            if ext == ".doc" and shutil.which("textutil"):
+                try:
+                    txt_path = filepath.with_suffix(".txt")
+                    subprocess.run(
+                        ["textutil", "-convert", "txt", "-output", str(txt_path), str(filepath)],
+                        check=True,
+                        capture_output=True,
+                        text=True
+                    )
+                    result["converted"] = str(txt_path)
+                    result["ok"] = True
+                    result["action"] = "converted"
+                    result["reason"] = "textutil conversion to txt (binary .doc)"
+                    if remove_original:
+                        filepath.unlink()
+                    return result
+                except subprocess.CalledProcessError as e:
+                    result["reason"] = f"textutil conversion failed: {e.stderr}"
+            
             tried_pandoc = False
             pdf_path = filepath.with_suffix(".pdf")
             if HAS_PYPANDOC:
@@ -295,7 +315,7 @@ def convert_file(filepath: Path, remove_original: bool = False) -> dict:
             if pandoc_cli:
                 tried_pandoc = True
                 try:
-                    subprocess.run([pandoc_cli, str(filepath), "-o", str(pdf_path)], check=True)
+                    subprocess.run([pandoc_cli, str(filepath), "-o", str(pdf_path)], check=True, capture_output=True, text=True)
                     result["converted"] = str(pdf_path)
                     result["ok"] = True
                     result["action"] = "converted"
@@ -303,8 +323,11 @@ def convert_file(filepath: Path, remove_original: bool = False) -> dict:
                     if remove_original:
                         filepath.unlink()
                     return result
-                except Exception as e:
-                    result["reason"] = (result["reason"] or "") + ("; " if result["reason"] else "") + f"pandoc CLI failed: {e}"
+                except subprocess.CalledProcessError as e:
+                    err_msg = f"Command {e.cmd} returned non-zero exit status {e.returncode}"
+                    if ext == ".doc" and e.returncode == 21:
+                        err_msg += " (binary .doc not supported by pandoc)"
+                    result["reason"] = (result["reason"] or "") + ("; " if result["reason"] else "") + f"pandoc CLI failed: {err_msg}"
 
             # Fallback: For .docx only, extract text using python-docx
             if ext == ".docx" and HAS_PYTHON_DOCX:
