@@ -1,0 +1,12 @@
+{
+  "source_page": "https://pdc.adm.ncu.edu.tw/pay_reg.asp",
+  "fetched_at": 1762846179,
+  "results": [
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/Register/data/ncupay.pdf",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/tution/docs/ncupay.pdf",
+      "reason": null
+    }
+  ]
+}
