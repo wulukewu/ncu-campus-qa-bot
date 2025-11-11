@@ -18,17 +18,17 @@ CRAWLER_DIRS=(
 )
 
 CRAWLER_CMDS=(
-    "python app.py"        # adm/course-form
-    "python app.py"        # adm/course-qa
-    "python app.py"        # adm/courses
-    "python app.py"        # adm/freshman
-    "python app.py"        # adm/news
-    "python app.py"        # adm/registration-form
-    "python app.py"        # adm/registration-qa
-    "python app.py"        # adm/regulations
-    "python app.py"        # adm/statistics
-    "python app.py"        # adm/tution
-    "python app.py"        # csie/news
+    "python app.py --insecure --convert --remove-originals" # adm/course-form
+    "python app.py --insecure" # adm/course-qa
+    "python app.py --insecure" # adm/courses
+    "python app.py --insecure" # adm/freshman
+    "python app.py" # adm/news
+    "python app.py --insecure --convert --remove-originals" # adm/registration-form
+    "python app.py --insecure" # adm/registration-qa
+    "python app.py --insecure" # adm/regulations
+    "python app.py --insecure --convert --remove-originals" # adm/statistics
+    "python app.py --insecure" # adm/tution
+    "python app.py" # csie/news
 )
 
 # --- Virtual Environment Setup ---
