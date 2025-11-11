@@ -15,7 +15,7 @@ all_news_data = []
 print(f"正在嘗試爬取: {URL}")
 
 try:
-    response = requests.get(URL)
+    response = requests.get(URL, verify=False)
     response.raise_for_status() 
     response.encoding = 'big5'
     
