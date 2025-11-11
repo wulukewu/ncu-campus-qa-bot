@@ -78,18 +78,13 @@ for i in "${!CRAWLER_DIRS[@]}"; do
                 echo "Moving '$local_docs_path' to '$dest_path'"
                 mv "$local_docs_path" "$dest_path"
 
-                # --- Organize files by extension ---
-                echo "Organizing files in '$dest_path'"
-                for file in "$dest_path"/*; do
-                    if [ -f "$file" ]; then
-                        extension="${file##*.}"
-                        if [ "$extension" != "" ] && [ "$extension" != "*" ]; then
-                            ext_dir="$dest_path/$extension"
-                            mkdir -p "$ext_dir"
-                            mv "$file" "$ext_dir/"
-                        fi
-                    fi
-                done
+                # --- Organize files using the external script ---
+                if [ -f "./organize_files.sh" ]; then
+                    echo "Organizing files in '$dest_path'..."
+                    ./organize_files.sh "$dest_path"
+                else
+                    echo "Warning: organize_files.sh not found. Skipping file organization."
+                fi
                 # --- End Organize ---
 
             else

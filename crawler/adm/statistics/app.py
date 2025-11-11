@@ -491,10 +491,6 @@ def main(argv=None):
             conv_skipped = sum(1 for r in results if isinstance(r.get("conversion"), dict) and r["conversion"].get("action") == "skipped")
             logging.info("Page %s: %d converted, %d skipped, %d failed", n, conv_converted, conv_skipped, conv_failed)
 
-        meta_file = n_out / "metadata.json"
-        with open(meta_file, "w", encoding="utf-8") as fh:
-            json.dump({"source_page": page_url, "fetched_at": int(time.time()), "results": results}, fh, ensure_ascii=False, indent=2)
-
         ok_count = sum(1 for r in results if r.get("ok"))
         if not args.no_metadata:
             meta_file = n_out / "metadata.json"
