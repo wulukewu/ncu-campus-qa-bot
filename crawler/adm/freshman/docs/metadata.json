@@ -1,0 +1,48 @@
+{
+  "source_page": "https://pdc.adm.ncu.edu.tw/newble_note.asp",
+  "fetched_at": 1762831835,
+  "results": [
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/Register/data/college/114/1141graNewComer.pdf",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/freshman/docs/1141graNewComer.pdf",
+      "reason": null
+    },
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/Register/data/college/114/underHB.pdf",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/freshman/docs/underHB.pdf",
+      "reason": null
+    },
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/Register/data/college/113/1132graNewComer.pdf",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/freshman/docs/1132graNewComer.pdf",
+      "reason": null
+    },
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/Register/data/college/113/1131graNewComer.pdf",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/freshman/docs/1131graNewComer.pdf",
+      "reason": null
+    },
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/Register/data/college/113/underHB.pdf",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/freshman/docs/underHB_1.pdf",
+      "reason": null
+    },
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/Register/data/college/112/1122graNewComer.pdf",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/freshman/docs/1122graNewComer.pdf",
+      "reason": null
+    },
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/register/data/reg_from_10804.pdf",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/freshman/docs/reg_from_10804.pdf",
+      "reason": null
+    }
+  ]
+}
