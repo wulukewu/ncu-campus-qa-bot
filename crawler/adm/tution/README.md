@@ -18,6 +18,7 @@ python3 app.py
 - `--insecure`: Disable SSL certificate verification (use with caution, only if you encounter SSL errors).
 - `--ca-bundle`: Path to a custom CA bundle file to use for verification.
 - `--quiet`: Reduce output verbosity.
+- `--no-metadata`: Do not write the metadata.json file.
 
 ### Example with `--insecure`
 
@@ -39,4 +40,4 @@ These can be installed using `pip` and the `requirements.txt` file from the pare
 
 ## Output
 
-Downloaded PDF files will be saved in the `docs/` subdirectory within this folder. A `metadata.json` file will also be created, containing information about the crawled page and the download results.
+Downloaded PDF files will be saved in the `docs/` subdirectory within this folder. A `metadata.json` file will also be created, containing information about the crawled page and the download results. You can disable this with the `--no-metadata` flag.

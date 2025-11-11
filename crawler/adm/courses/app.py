@@ -153,6 +153,7 @@ def main(argv=None):
     parser.add_argument("--quiet", action="store_true", help="Reduce output")
     parser.add_argument("--insecure", action="store_true", help="Disable SSL certificate verification (insecure)")
     parser.add_argument("--ca-bundle", required=False, help="Path to a custom CA bundle file to use for verification", default=None)
+    parser.add_argument("--no-metadata", action="store_true", help="Do not write metadata.json or summary.json files")
     args = parser.parse_args(argv)
 
     logging.basicConfig(level=logging.INFO if not args.quiet else logging.WARNING,
@@ -240,20 +241,24 @@ def main(argv=None):
             rec = download_file(session, url, year_out, verify=verify)
             results.append(rec)
 
-        meta_file = year_out / "metadata.json"
-        with open(meta_file, "w", encoding="utf-8") as fh:
-            json.dump({"source_page": page_url, "fetched_at": int(time.time()), "results": results}, fh, ensure_ascii=False, indent=2)
-
         ok_count = sum(1 for r in results if r.get("ok"))
-        logging.info("Year %s completed: %d succeeded, %d failed. Metadata: %s", year, ok_count, len(results) - ok_count, meta_file)
+        if not args.no_metadata:
+            meta_file = year_out / "metadata.json"
+            with open(meta_file, "w", encoding="utf-8") as fh:
+                json.dump({"source_page": page_url, "fetched_at": int(time.time()), "results": results}, fh, ensure_ascii=False, indent=2)
+            logging.info("Year %s completed: %d succeeded, %d failed. Metadata: %s", year, ok_count, len(results) - ok_count, meta_file)
+        else:
+            logging.info("Year %s completed: %d succeeded, %d failed.", year, ok_count, len(results) - ok_count)
         all_results.append({"year": year, "source_page": page_url, "results": results})
 
     # write top-level summary
-    summary_file = out_dir / "summary.json"
-    with open(summary_file, "w", encoding="utf-8") as fh:
-        json.dump({"years": years, "fetched_at": int(time.time()), "data": all_results}, fh, ensure_ascii=False, indent=2)
-
-    logging.info("All done. Summary: %s", summary_file)
+    if not args.no_metadata:
+        summary_file = out_dir / "summary.json"
+        with open(summary_file, "w", encoding="utf-8") as fh:
+            json.dump({"years": years, "fetched_at": int(time.time()), "data": all_results}, fh, ensure_ascii=False, indent=2)
+        logging.info("All done. Summary: %s", summary_file)
+    else:
+        logging.info("All done.")
 
 
 if __name__ == "__main__":

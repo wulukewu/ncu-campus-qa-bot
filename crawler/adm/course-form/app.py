@@ -348,6 +348,8 @@ def main(argv=None):
                         help="Remove original files after successful conversion")
     parser.add_argument("--ca-bundle", default=None,
                         help="Path to CA bundle file for SSL verification")
+    parser.add_argument("--no-metadata", action="store_true",
+                        help="Do not write the metadata.json file")
     
     args = parser.parse_args(argv)
     
@@ -440,9 +442,10 @@ def main(argv=None):
         metadata.append(meta)
     
     # Step 6: Save metadata
-    metadata_file = output_dir / "metadata.json"
-    with open(metadata_file, "w", encoding="utf-8") as f:
-        json.dump(metadata, f, indent=2, ensure_ascii=False)
+    if not args.no_metadata:
+        metadata_file = output_dir / "metadata.json"
+        with open(metadata_file, "w", encoding="utf-8") as f:
+            json.dump(metadata, f, indent=2, ensure_ascii=False)
     
     # Step 7: Print summary
     print(f"\n=== Summary ===")
@@ -457,7 +460,8 @@ def main(argv=None):
         print(f"Skipped: {skipped}")
         print(f"Conversion failed: {conv_failed}")
     
-    print(f"\nMetadata saved to: {metadata_file}")
+    if not args.no_metadata:
+        print(f"\nMetadata saved to: {output_dir / 'metadata.json'}")
     
     return 0
 

@@ -18,16 +18,16 @@ CRAWLER_DIRS=(
 )
 
 CRAWLER_CMDS=(
-    "python app.py --insecure --convert --remove-originals" # adm/course-form
-    "python app.py --insecure" # adm/course-qa
-    "python app.py --insecure" # adm/courses
-    "python app.py --insecure" # adm/freshman
+    "python app.py --insecure --convert --remove-originals --no-metadata" # adm/course-form
+    "python app.py --insecure --no-metadata" # adm/course-qa
+    "python app.py --insecure --no-metadata" # adm/courses
+    "python app.py --insecure --no-metadata" # adm/freshman
     "python app.py" # adm/news
-    "python app.py --insecure --convert --remove-originals" # adm/registration-form
-    "python app.py --insecure" # adm/registration-qa
-    "python app.py --insecure" # adm/regulations
-    "python app.py --insecure --convert --remove-originals" # adm/statistics
-    "python app.py --insecure" # adm/tution
+    "python app.py --insecure --convert --remove-originals --no-metadata" # adm/registration-form
+    "python app.py --insecure --no-metadata" # adm/registration-qa
+    "python app.py --insecure --no-metadata" # adm/regulations
+    "python app.py --insecure --convert --remove-originals --no-metadata" # adm/statistics
+    "python app.py --insecure --no-metadata" # adm/tution
     "python app.py" # csie/news
 )
 

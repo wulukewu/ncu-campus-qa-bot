@@ -66,6 +66,8 @@ All files are saved to the `docs/` directory with a `metadata.json` file contain
 - Conversion status (if `--convert` used)
 - Original URLs and link text
 
+To disable the creation of `metadata.json`, use the `--no-metadata` flag.
+
 ## Dependencies
 
 Install from the parent `crawler/requirements.txt`:
