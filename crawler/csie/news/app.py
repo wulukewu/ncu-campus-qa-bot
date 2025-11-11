@@ -173,6 +173,7 @@ def write_details_csv(details: List[Tuple[str, str, str, str, str, str, str]], o
         s = s.replace("\t", "\\t").replace("\n", "\\n")
         return s
     try:
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
         with open(output_path, "w", newline="", encoding="utf-8") as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(["category", "list_title", "list_date", "url", "detail_title", "detail_date", "detail_text"])
@@ -315,7 +316,7 @@ def parse_args(argv: List[str]) -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Crawl CSIE announcement pages and export to CSV with details.")
     p.add_argument("categories", nargs="*", help="Categories to crawl (defaults to all)")
     p.add_argument("--max-pages", type=int, default=200, help="Maximum pages to try per category")
-    p.add_argument("--output", default="announcements.csv", help="Output CSV file path (default: announcements.csv)")
+    p.add_argument("--output", default="docs/news.csv", help="Output CSV file path (default: announcements.csv)")
     p.add_argument("--delay", type=float, default=0.5, help="Delay between requests in seconds")
     return p.parse_args(argv[1:])
 
