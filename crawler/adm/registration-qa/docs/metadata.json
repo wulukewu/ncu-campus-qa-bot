@@ -1,0 +1,12 @@
+{
+  "source_page": "https://pdc.adm.ncu.edu.tw/reg_qa.asp",
+  "fetched_at": 1762845944,
+  "results": [
+    {
+      "url": "https://pdc.adm.ncu.edu.tw/Register/Register_Q&A.pdf",
+      "ok": true,
+      "filename": "/Users/luke/Documents/git-code/ncu-campus-qa-bot/crawler/adm/registration-qa/docs/Register_Q&A.pdf",
+      "reason": null
+    }
+  ]
+}
