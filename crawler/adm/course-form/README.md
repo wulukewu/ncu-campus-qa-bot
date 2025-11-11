@@ -1,8 +1,11 @@
-# Registration Form Downloader
+# Course Form Downloader
 
-Download registration forms from the course administration page: https://pdc.adm.ncu.edu.tw/form_course.asp
+Download course-related forms from the NCU Admin website. The script automatically extracts the iframe URL and downloads all linked files.
 
-The page contains an iframe pointing to `./Course/form.html` which lists all the downloadable forms.
+**Main page:** https://pdc.adm.ncu.edu.tw/form_course.asp  
+**Iframe URL:** https://pdc.adm.ncu.edu.tw/Course/form.html
+
+> 💡 **Need to find iframe URLs?** See [HOW_TO_FIND_IFRAME.md](../HOW_TO_FIND_IFRAME.md) or use `python ../find_iframe.py <url> --insecure`
 
 ## Usage
 
