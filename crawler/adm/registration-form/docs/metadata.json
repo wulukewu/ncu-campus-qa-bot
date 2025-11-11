@@ -1,0 +1,664 @@
+[
+  {
+    "filename": "form06-01.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-01.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 52736,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-01.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form06-01.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-01.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 15026,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-01.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form06-01-1.xls",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-01-1.xls",
+    "text": "xls",
+    "downloaded": true,
+    "size": 32256,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-01-1.csv",
+      "action": "converted",
+      "reason": "excel->csv (engine=xlrd)"
+    }
+  },
+  {
+    "filename": "form06-01.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-01.odt",
+    "text": "",
+    "downloaded": true,
+    "size": 15026,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-01.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form05-01.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form05-01.pdf",
+    "text": "",
+    "downloaded": false,
+    "size": 0,
+    "error": "404 Client Error: Not Found for url: https://pdc.adm.ncu.edu.tw/Form/form/form05-01.pdf"
+  },
+  {
+    "filename": "form06-02.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-02.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 118272,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-02.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form06-02.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-02.odt",
+    "text": "》.odt",
+    "downloaded": true,
+    "size": 21704,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-02.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form05-01.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form05-01.pdf",
+    "text": "",
+    "downloaded": false,
+    "size": 0,
+    "error": "404 Client Error: Not Found for url: https://pdc.adm.ncu.edu.tw/Form/form/form05-01.pdf"
+  },
+  {
+    "filename": "form06-03.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-03.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 89088,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-03.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form06-03.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-03.odt",
+    "text": "》.odt",
+    "downloaded": true,
+    "size": 23048,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-03.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form06-05.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-05.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 50176,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-05.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form06-05.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-05.odt",
+    "text": "》.odt",
+    "downloaded": true,
+    "size": 22219,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-05.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form05-06d.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form05-06d.pdf",
+    "text": "說明",
+    "downloaded": true,
+    "size": 196483,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form06-06.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-06.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 43520,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-06.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form06-06.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-06.odt",
+    "text": "》.odt",
+    "downloaded": true,
+    "size": 19507,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-06.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form05-07.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form05-07.pdf",
+    "text": "5-07課程選修別更改",
+    "downloaded": true,
+    "size": 49935,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form06-07.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-07.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 40448,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-07.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form06-07.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-07.odt",
+    "text": "》.odt",
+    "downloaded": true,
+    "size": 20197,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-07.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form05-08.pdf",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form05-08.pdf",
+    "text": "5-08學生至國訓中心訓練期間選課申請單",
+    "downloaded": true,
+    "size": 475799,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": null,
+      "action": "skipped",
+      "reason": ".pdf is already RAG-friendly"
+    }
+  },
+  {
+    "filename": "form06-08.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-08.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 44032,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-08.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form06-08.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-08.odt",
+    "text": "》.odt",
+    "downloaded": true,
+    "size": 20246,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-08.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form06-09.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-09.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 68096,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-09.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form06-09.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-09.odt",
+    "text": "》.odt",
+    "downloaded": true,
+    "size": 17739,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-09.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form06-09-1.xlsx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-09-1.xlsx",
+    "text": "xlsx",
+    "downloaded": true,
+    "size": 12355,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-09-1.csv",
+      "action": "converted",
+      "reason": "excel->csv (engine=openpyxl)"
+    }
+  },
+  {
+    "filename": "form06-01.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-01.odt",
+    "text": "",
+    "downloaded": true,
+    "size": 15026,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-01.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form06-09-2.xlsx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-09-2.xlsx",
+    "text": "xlsx",
+    "downloaded": true,
+    "size": 24500,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-09-2.csv",
+      "action": "converted",
+      "reason": "excel->csv (engine=openpyxl)"
+    }
+  },
+  {
+    "filename": "form06-01.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-01.odt",
+    "text": "",
+    "downloaded": true,
+    "size": 15026,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-01.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form06-10.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-10.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 44544,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-10.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form06-10.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-10.odt",
+    "text": "》.odt",
+    "downloaded": true,
+    "size": 20842,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-10.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form06-14.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-14.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 48640,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-14.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form06-14.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-14.odt",
+    "text": "》.odt",
+    "downloaded": true,
+    "size": 18660,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-14.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form06-15.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-15.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 32256,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-15.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form06-15.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-15.odt",
+    "text": "》.odt",
+    "downloaded": true,
+    "size": 18209,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-15.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form06-16.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-16.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 50688,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-16.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form06-16.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-16.odt",
+    "text": "》.odt",
+    "downloaded": true,
+    "size": 17954,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-16.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form06-17.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-17.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 46080,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-17.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form06-17.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-17.odt",
+    "text": "》.odt",
+    "downloaded": true,
+    "size": 17083,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-17.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form06-18.xls",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-18.xls",
+    "text": ".xls",
+    "downloaded": true,
+    "size": 32256,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-18.csv",
+      "action": "converted",
+      "reason": "excel->csv (engine=xlrd)"
+    }
+  },
+  {
+    "filename": "form06-18.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-18.odt",
+    "text": "》",
+    "downloaded": false,
+    "size": 0,
+    "error": "404 Client Error: Not Found for url: https://pdc.adm.ncu.edu.tw/Form/form/form06-18.odt"
+  },
+  {
+    "filename": "form06-19.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-19.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 34181,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-19.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: No pandoc was found: either install pandoc and add it\nto your PATH or or call pypandoc.download_pandoc(...) or\ninstall pypandoc wheels with included pandoc.; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form06-19.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-19.odt",
+    "text": "》.odt",
+    "downloaded": true,
+    "size": 14632,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-19.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form06-21.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-21.doc",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 29184,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-21.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .doc)"
+    }
+  },
+  {
+    "filename": "form06-21.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-21.odt",
+    "text": "》.odt",
+    "downloaded": true,
+    "size": 13747,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-21.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form06-22.doc",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-22.doc",
+    "text": "",
+    "downloaded": false,
+    "size": 0,
+    "error": "404 Client Error: Not Found for url: https://pdc.adm.ncu.edu.tw/Form/form/form06-22.doc"
+  },
+  {
+    "filename": "form06-22.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-22.odt",
+    "text": ".odt",
+    "downloaded": true,
+    "size": 15263,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-22.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form06-24.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-24.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 18109,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-24.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: No pandoc was found: either install pandoc and add it\nto your PATH or or call pypandoc.download_pandoc(...) or\ninstall pypandoc wheels with included pandoc.; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form06-24.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-24.odt",
+    "text": "》.odt",
+    "downloaded": true,
+    "size": 12417,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-24.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  },
+  {
+    "filename": "form06-25.docx",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-25.docx",
+    "text": ".doc",
+    "downloaded": true,
+    "size": 26074,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-25.txt",
+      "action": "converted",
+      "reason": "pypandoc conversion failed: No pandoc was found: either install pandoc and add it\nto your PATH or or call pypandoc.download_pandoc(...) or\ninstall pypandoc wheels with included pandoc.; docx->txt fallback (pandoc failed)"
+    }
+  },
+  {
+    "filename": "form06-25.odt",
+    "url": "https://pdc.adm.ncu.edu.tw/Form/form/form06-25.odt",
+    "text": "》.odt",
+    "downloaded": true,
+    "size": 8543,
+    "error": null,
+    "conversion": {
+      "ok": true,
+      "converted": "docs/form06-25.txt",
+      "action": "converted",
+      "reason": "textutil conversion to txt (binary .odt)"
+    }
+  }
+]
