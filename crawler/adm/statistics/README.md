@@ -19,6 +19,9 @@ You can override with flags:
 python app.py --start 1 --end 4 --extensions pdf,html --url "https://.../rate_note_reg{n}.asp"
 ```
 
+- `--quiet`: Quiet mode.
+- `--no-metadata`: Do not write `metadata.json` for each page or the top-level `summary.json`.
+
 ## File Conversion for RAG
 
 To convert downloaded files to RAG-friendly formats (Excel→CSV, HTML/Word→PDF):
@@ -47,3 +50,12 @@ python app.py --insecure --convert --remove-originals
   - If neither is available, `.docx` falls back to plain text using `python-docx` (pip).
 
 Already RAG-friendly formats (`.pdf`, `.csv`, `.txt`) are skipped (counted as `skipped`) rather than re-converted. Conversion logs differentiate `converted`, `skipped`, and `failed`.
+
+## Output
+
+The script downloads files into `docs/<n>/` folders, where `<n>` corresponds to the page number. Each of these subdirectories will contain a `metadata.json` file with details about the downloaded files for that page.
+
+A top-level `summary.json` is also created in the `docs/` folder, which contains a summary of all crawled pages.
+
+To disable the creation of all JSON files (`metadata.json` and `summary.json`), use the `--no-metadata` flag.
+

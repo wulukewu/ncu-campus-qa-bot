@@ -102,6 +102,7 @@ def main(argv=None):
     parser.add_argument("--url", required=False, default="https://pdc.adm.ncu.edu.tw/newble_note.asp")
     parser.add_argument("--outdir", required=False, default="docs")
     parser.add_argument("--insecure", action="store_true")
+    parser.add_argument("--no-metadata", action="store_true", help="Do not write the metadata.json file")
     args = parser.parse_args(argv)
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
@@ -136,12 +137,14 @@ def main(argv=None):
         rec = download_file(session, url, out_dir, verify=verify)
         results.append(rec)
 
-    meta = {"source_page": args.url, "fetched_at": int(time.time()), "results": results}
-    with open(out_dir / "metadata.json", "w", encoding="utf-8") as fh:
-        json.dump(meta, fh, ensure_ascii=False, indent=2)
-
     ok = sum(1 for r in results if r.get("ok"))
-    logging.info("Done: %d succeeded, %d failed. Metadata saved to %s", ok, len(results) - ok, out_dir / "metadata.json")
+    if not args.no_metadata:
+        meta = {"source_page": args.url, "fetched_at": int(time.time()), "results": results}
+        with open(out_dir / "metadata.json", "w", encoding="utf-8") as fh:
+            json.dump(meta, fh, ensure_ascii=False, indent=2)
+        logging.info("Done: %d succeeded, %d failed. Metadata saved to %s", ok, len(results) - ok, out_dir / "metadata.json")
+    else:
+        logging.info("Done: %d succeeded, %d failed.", ok, len(results) - ok)
 
 
 if __name__ == "__main__":

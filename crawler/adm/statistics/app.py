@@ -391,6 +391,7 @@ def main(argv=None):
     parser.add_argument("--convert", action="store_true", help="Convert files to RAG-friendly formats (Excel->CSV, HTML/Word->PDF)")
     parser.add_argument("--remove-originals", action="store_true", help="Remove original files after conversion (only with --convert)")
     parser.add_argument("--quiet", action="store_true", help="Quiet mode")
+    parser.add_argument("--no-metadata", action="store_true", help="Do not write metadata.json or summary.json files")
     args = parser.parse_args(argv)
 
     logging.basicConfig(level=logging.INFO if not args.quiet else logging.WARNING, format="%(levelname)s: %(message)s")
@@ -490,19 +491,23 @@ def main(argv=None):
             conv_skipped = sum(1 for r in results if isinstance(r.get("conversion"), dict) and r["conversion"].get("action") == "skipped")
             logging.info("Page %s: %d converted, %d skipped, %d failed", n, conv_converted, conv_skipped, conv_failed)
 
-        meta_file = n_out / "metadata.json"
-        with open(meta_file, "w", encoding="utf-8") as fh:
-            json.dump({"source_page": page_url, "fetched_at": int(time.time()), "results": results}, fh, ensure_ascii=False, indent=2)
-
         ok_count = sum(1 for r in results if r.get("ok"))
-        logging.info("Page %s completed: %d succeeded, %d failed. Metadata: %s", n, ok_count, len(results) - ok_count, meta_file)
+        if not args.no_metadata:
+            meta_file = n_out / "metadata.json"
+            with open(meta_file, "w", encoding="utf-8") as fh:
+                json.dump({"source_page": page_url, "fetched_at": int(time.time()), "results": results}, fh, ensure_ascii=False, indent=2)
+            logging.info("Page %s completed: %d succeeded, %d failed. Metadata: %s", n, ok_count, len(results) - ok_count, meta_file)
+        else:
+            logging.info("Page %s completed: %d succeeded, %d failed.", n, ok_count, len(results) - ok_count)
         all_results.append({"n": n, "source_page": page_url, "results": results})
 
-    summary_file = out_dir / "summary.json"
-    with open(summary_file, "w", encoding="utf-8") as fh:
-        json.dump({"start": args.start, "end": args.end, "fetched_at": int(time.time()), "data": all_results}, fh, ensure_ascii=False, indent=2)
-
-    logging.info("All done. Summary: %s", summary_file)
+    if not args.no_metadata:
+        summary_file = out_dir / "summary.json"
+        with open(summary_file, "w", encoding="utf-8") as fh:
+            json.dump({"start": args.start, "end": args.end, "fetched_at": int(time.time()), "data": all_results}, fh, ensure_ascii=False, indent=2)
+        logging.info("All done. Summary: %s", summary_file)
+    else:
+        logging.info("All done.")
 
 
 if __name__ == "__main__":

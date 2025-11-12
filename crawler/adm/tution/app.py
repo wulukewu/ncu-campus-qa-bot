@@ -140,6 +140,7 @@ def main(argv=None):
     parser.add_argument("--quiet", action="store_true", help="Reduce output")
     parser.add_argument("--insecure", action="store_true", help="Disable SSL certificate verification (insecure)")
     parser.add_argument("--ca-bundle", required=False, help="Path to a custom CA bundle file to use for verification", default=None)
+    parser.add_argument("--no-metadata", action="store_true", help="Do not write the metadata.json file")
     args = parser.parse_args(argv)
 
     logging.basicConfig(level=logging.INFO if not args.quiet else logging.WARNING,
@@ -218,12 +219,14 @@ def main(argv=None):
         rec = download_file(session, url, out_dir, verify=verify)
         results.append(rec)
 
-    meta_file = out_dir / "metadata.json"
-    with open(meta_file, "w", encoding="utf-8") as fh:
-        json.dump({"source_page": page_url, "fetched_at": int(time.time()), "results": results}, fh, ensure_ascii=False, indent=2)
-
     ok_count = sum(1 for r in results if r.get("ok"))
-    logging.info("Completed: %d succeeded, %d failed. Metadata: %s", ok_count, len(results) - ok_count, meta_file)
+    if not args.no_metadata:
+        meta_file = out_dir / "metadata.json"
+        with open(meta_file, "w", encoding="utf-8") as fh:
+            json.dump({"source_page": page_url, "fetched_at": int(time.time()), "results": results}, fh, ensure_ascii=False, indent=2)
+        logging.info("Completed: %d succeeded, %d failed. Metadata: %s", ok_count, len(results) - ok_count, meta_file)
+    else:
+        logging.info("Completed: %d succeeded, %d failed.", ok_count, len(results) - ok_count)
 
 
 if __name__ == "__main__":

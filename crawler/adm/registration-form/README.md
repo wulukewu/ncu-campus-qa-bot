@@ -23,6 +23,7 @@ python3 app.py
 - `--insecure`: Disable SSL certificate verification.
 - `--convert`: Convert downloaded files to RAG-friendly formats (e.g., `.doc` to `.pdf`, `.xls` to `.csv`).
 - `--remove-originals`: After a successful conversion, remove the original file.
+- `--no-metadata`: Do not write the metadata.json file.
 
 ### Dependencies
 
@@ -41,4 +42,4 @@ Key dependencies include:
 
 ## Output
 
-Downloaded files are saved in the `docs/` subdirectory. A `metadata.json` file is also created with details about each downloaded file and any conversions performed.
+Downloaded files are saved in the `docs/` subdirectory. A `metadata.json` file is also created with details about each downloaded file and any conversions performed. You can disable this with the `--no-metadata` flag.
