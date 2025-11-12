@@ -14,21 +14,25 @@ CRAWLER_DIRS=(
     "adm/regulations"
     "adm/statistics"
     "adm/tution"
+    "oga/news"
+    "oga/common-qa"
     "csie/news"
 )
 
 CRAWLER_CMDS=(
-    "python3 app.py --insecure --convert --remove-originals --no-metadata" # adm/course-form
-    "python3 app.py --insecure --no-metadata" # adm/course-qa
-    "python3 app.py --insecure --no-metadata" # adm/courses
-    "python3 app.py --insecure --no-metadata" # adm/freshman
-    "python3 app.py" # adm/news
-    "python3 app.py --insecure --convert --remove-originals --no-metadata" # adm/registration-form
-    "python3 app.py --insecure --no-metadata" # adm/registration-qa
-    "python3 app.py --insecure --no-metadata" # adm/regulations
-    "python3 app.py --insecure --convert --remove-originals --no-metadata" # adm/statistics
-    "python3 app.py --insecure --no-metadata" # adm/tution
-    "python3 app.py" # csie/news
+    "python app.py --insecure --convert --remove-originals --no-metadata" # adm/course-form
+    "python app.py --insecure --no-metadata" # adm/course-qa
+    "python app.py --insecure --no-metadata" # adm/courses
+    "python app.py --insecure --no-metadata" # adm/freshman
+    "python app.py" # adm/news
+    "python app.py --insecure --convert --remove-originals --no-metadata" # adm/registration-form
+    "python app.py --insecure --no-metadata" # adm/registration-qa
+    "python app.py --insecure --no-metadata" # adm/regulations
+    "python app.py --insecure --convert --remove-originals --no-metadata" # adm/statistics
+    "python app.py --insecure --no-metadata" # adm/tution
+    "python app.py" # oga/news
+    "python app.py" # oga/common-qa
+    "python app.py" # csie/news
 )
 
 # --- Virtual Environment Setup ---
