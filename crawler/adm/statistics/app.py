@@ -275,6 +275,32 @@ def convert_file(filepath: Path, remove_original: bool = False) -> dict:
         
         # Word to PDF (prefer pandoc). Fallback: DOCX->TXT if python-docx available.
         elif ext in [".doc", ".docx"]:
+            pdf_path = filepath.with_suffix(".pdf")
+
+            # Try unoconv first, as it's the most reliable for .doc
+            if shutil.which("unoconv"):
+                try:
+                    subprocess.run(
+                        ["unoconv", "-f", "pdf", "-o", str(pdf_path), str(filepath)],
+                        check=True,
+                        capture_output=True,
+                        text=True
+                    )
+                    if pdf_path.is_file():
+                        result["converted"] = str(pdf_path)
+                        result["ok"] = True
+                        result["action"] = "converted"
+                        result["reason"] = "unoconv conversion"
+                        if remove_original:
+                            filepath.unlink()
+                        return result
+                    else:
+                        result["reason"] = "unoconv ran but did not produce a PDF file."
+                except subprocess.CalledProcessError as e:
+                    result["reason"] = f"unoconv failed: {e.stderr}"
+                except Exception as e:
+                    result["reason"] = f"unoconv failed with unexpected error: {e}"
+
             # Try textutil on macOS first for binary .doc files (pandoc doesn't support binary .doc)
             if ext == ".doc" and shutil.which("textutil"):
                 try:
@@ -296,7 +322,6 @@ def convert_file(filepath: Path, remove_original: bool = False) -> dict:
                     result["reason"] = f"textutil conversion failed: {e.stderr}"
             
             tried_pandoc = False
-            pdf_path = filepath.with_suffix(".pdf")
             if HAS_PYPANDOC:
                 tried_pandoc = True
                 try:
