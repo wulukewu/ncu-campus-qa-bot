@@ -91,14 +91,15 @@ print(f"--- 開始使用 Selenium 爬取 (JS 載入) ---\nURL: {PAGE_URL}\n")
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
 options.add_argument('--no-sandbox')
-# --- 這行是修正後的地方 ---
 options.add_argument('--disable-dev-shm-usage') 
-# -------------------------
+options.add_argument('--dns-server=8.8.8.8,8.8.4.4')
+options.binary_location = "/usr/bin/chromium"
+print(f"Chrome options: {options.arguments}")
 driver = None
 
 try:
     print("正在啟動瀏覽器驅動...")
-    service = Service(ChromeDriverManager().install())
+    service = Service(executable_path="/usr/bin/chromedriver", service_log_path="/tmp/chromedriver.log")
     driver = webdriver.Chrome(service=service, options=options)
 
     print("正在請求網頁...")

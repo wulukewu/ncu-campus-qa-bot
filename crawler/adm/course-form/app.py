@@ -213,6 +213,32 @@ def convert_file(filepath: Path, remove_original: bool = False) -> dict:
         
         # Word to PDF (prefer pandoc). Fallback: DOCX->TXT if python-docx available.
         elif ext in [".doc", ".docx", ".odt"]:
+            pdf_path = filepath.with_suffix(".pdf")
+
+            # Try unoconv first, as it's the most reliable for .doc
+            if shutil.which("unoconv"):
+                try:
+                    subprocess.run(
+                        ["unoconv", "-f", "pdf", "-o", str(pdf_path), str(filepath)],
+                        check=True,
+                        capture_output=True,
+                        text=True
+                    )
+                    if pdf_path.is_file():
+                        result["converted"] = str(pdf_path)
+                        result["ok"] = True
+                        result["action"] = "converted"
+                        result["reason"] = "unoconv conversion"
+                        if remove_original:
+                            filepath.unlink()
+                        return result
+                    else:
+                        result["reason"] = "unoconv ran but did not produce a PDF file."
+                except subprocess.CalledProcessError as e:
+                    result["reason"] = f"unoconv failed: {e.stderr}"
+                except Exception as e:
+                    result["reason"] = f"unoconv failed with unexpected error: {e}"
+
             # Try textutil on macOS first for binary .doc/.odt files (pandoc doesn't support binary .doc, 
             # and pandoc ODT->PDF fails with Chinese characters due to LaTeX limitations)
             if ext in [".doc", ".odt"] and shutil.which("textutil"):
@@ -235,7 +261,6 @@ def convert_file(filepath: Path, remove_original: bool = False) -> dict:
                     result["reason"] = f"textutil conversion failed: {e.stderr}"
             
             tried_pandoc = False
-            pdf_path = filepath.with_suffix(".pdf")
             if HAS_PYPANDOC:
                 tried_pandoc = True
                 try:
@@ -364,7 +389,7 @@ def main(argv=None):
     extensions = [f".{ext.strip().lstrip('.')}" for ext in args.extensions.split(",")]
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
-    
+
     # Step 1: Fetch the main page
     print(f"Fetching main page: {args.url}")
     verify_arg = False if args.insecure else (args.ca_bundle or certifi.where())
