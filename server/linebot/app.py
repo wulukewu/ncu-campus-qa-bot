@@ -12,13 +12,16 @@ from linebot.v3.webhooks import MessageEvent, TextMessageContent
 from linebot.v3.exceptions import InvalidSignatureError
 import re, logging
 from PyPDF2 import PdfReader
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
 # === 基本設定 ===
-LINE_CHANNEL_ACCESS_TOKEN = "T6Jqs8N+HkOxXOvrMuqQnPsW76AGfo0LaJ9sifz8rBD6m5vFZcNnIyAujriR/jv2V1eGYvRIrA6CV6mHkunGe8I9XqxTfW9Y5Ce9SgxEbdAqGKZdk3HiRfq+u7K+liuNm3+JwTD3cD9dKOH+QJQocgdB04t89/1O/w1cDnyilFU="
-LINE_CHANNEL_SECRET = "2afb7278ece26ee50e9a135a4acad3c9"
-LLAMA_API_URL = "http://127.0.0.1:1234/v1/chat/completions"
+LINE_CHANNEL_ACCESS_TOKEN = os.getenv("LINE_CHANNEL_ACCESS_TOKEN")
+LINE_CHANNEL_SECRET = os.getenv("LINE_CHANNEL_SECRET")
+LLAMA_API_URL = os.getenv("LLAMA_API_URL")
 
 GITHUB_BASE = (
     "https://raw.githubusercontent.com/wulukewu/ncu-campus-qa-bot/main/crawler/docs/"
