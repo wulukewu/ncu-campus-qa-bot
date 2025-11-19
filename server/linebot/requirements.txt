@@ -1,0 +1,6 @@
+flask
+requests
+pandas
+line-bot-sdk
+PyPDF2
+python-dotenv
