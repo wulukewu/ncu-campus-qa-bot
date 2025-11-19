@@ -1,1 +1,6 @@
 .DS_Store
+linebot_RAG/rag_server/.venv/
+linebot_RAG/rag_server/chroma_db/
+linebot_RAG/rag_server/chroma_db.zip
+__pycache__/
+linebot_RAG/rag_server/__pycache__/
