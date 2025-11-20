@@ -22,9 +22,7 @@ LINE_CHANNEL_ACCESS_TOKEN = os.getenv("LINE_CHANNEL_ACCESS_TOKEN")
 LINE_CHANNEL_SECRET = os.getenv("LINE_CHANNEL_SECRET")
 LLAMA_API_URL = os.getenv("LLAMA_API_URL")
 
-GITHUB_BASE = (
-    "https://raw.githubusercontent.com/wulukewu/ncu-campus-qa-bot/main/crawler/docs/"
-)
+LOCAL_DOCS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../crawler/docs"))
 
 config = Configuration(access_token=LINE_CHANNEL_ACCESS_TOKEN)
 api_client = ApiClient(config)
@@ -36,7 +34,7 @@ logging.basicConfig(level=logging.INFO)
 knowledge_base = []  # 所有文件的純文字內容
 
 
-def load_github_files():
+def load_local_files():
     folders = [
         "adm_course-form",
         "adm_course-qa/pdf",
@@ -54,53 +52,52 @@ def load_github_files():
     ]
 
     for folder in folders:
-        api_url = f"{GITHUB_BASE}{folder}"
-        print(f"📂 Checking folder: {api_url}")
+        folder_path = os.path.join(LOCAL_DOCS_PATH, folder)
+        print(f"📂 Checking folder: {folder_path}")
 
-        res = requests.get(api_url)
-        if res.status_code != 200:
-            print(f"❌ Failed to access {api_url}")
+        if not os.path.isdir(folder_path):
+            print(f"❌ Folder not found: {folder_path}")
             continue
 
-        files = res.json()
-        for f in files:
+        for root, _, files in os.walk(folder_path):
+            for name in files:
+                if not any(name.endswith(ext) for ext in [".csv", ".txt", ".pdf"]):
+                    continue
 
-            name = f["name"]
-            download_url = f.get("download_url")
+                file_path = os.path.join(root, name)
+                print(f"📄 Reading {name}")
 
-            # 若是子資料夾 (沒有 download_url)，跳過
-            if not download_url:
-                continue
+                with open(file_path, "rb") as f:
+                    file_bytes = f.read()
+                
+                ext = name.split(".")[-1]
+                text = extract_text(file_bytes, ext)
 
-            if not any(name.endswith(ext) for ext in [".csv", ".txt", ".pdf"]):
-                continue
-
-            print(f"⬇️  Downloading {name}")
-
-            file_bytes = requests.get(download_url).content
-            ext = name.split(".")[-1]
-            text = extract_text(file_bytes, ext)
-
-            knowledge_base.append((folder, text))
+                knowledge_base.append((folder, text))
 
     print(f"✅ 知識庫載入完成，共 {len(knowledge_base)} 份文件。")
 
 
 def extract_text(file_bytes, ext):
     if ext == "csv":
-        df = pd.read_csv(io.BytesIO(file_bytes))
-        return df.to_string(index=False)
-
+        try:
+            df = pd.read_csv(io.BytesIO(file_bytes))
+            return df.to_string(index=False)
+        except pd.errors.EmptyDataError:
+            print(f"⚠️  Skipping empty csv file.")
+            return ""
     elif ext == "txt":
         return file_bytes.decode("utf-8", errors="ignore")
-
     elif ext == "pdf":
-        reader = PdfReader(io.BytesIO(file_bytes))
-        text = ""
-        for page in reader.pages:
-            text += page.extract_text() or ""
-        return text
-
+        try:
+            reader = PdfReader(io.BytesIO(file_bytes))
+            text = ""
+            for page in reader.pages:
+                text += page.extract_text() or ""
+            return text
+        except Exception as e:
+            print(f"⚠️  Skipping problematic pdf file: {e}")
+            return ""
     return ""
 
 
@@ -183,6 +180,6 @@ def handle_message(event):
 # 啟動伺服器
 # =====================================================
 if __name__ == "__main__":
-    print("📚 從 GitHub 載入資料中...")
-    load_github_files()
+    print("📚 從本地端載入資料中...")
+    load_local_files()
     app.run(port=5000)
