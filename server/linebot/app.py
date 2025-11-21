@@ -82,13 +82,26 @@ def home():
 
 @app.route("/callback", methods=["POST"])
 def callback():
-    signature = request.headers["X-Line-Signature"]
+    # Get X-Line-Signature header
+    signature = request.headers.get("X-Line-Signature")
+    if not signature:
+        logging.error("Missing X-Line-Signature header")
+        abort(400)
+    
+    # Get request body
     body = request.get_data(as_text=True)
+    logging.info(f"Request body: {body}")
 
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
+        logging.error("Invalid signature")
         abort(400)
+    except Exception as e:
+        logging.error(f"Error handling webhook: {e}")
+        import traceback
+        traceback.print_exc()
+        abort(500)
 
     return "OK"
 
@@ -96,18 +109,33 @@ def callback():
 @handler.add(MessageEvent, message=TextMessageContent)
 def handle_message(event):
     """Handle incoming messages from LINE"""
-    question = event.message.text.strip()
-    logging.info(f"Received question: {question}")
-    
-    # Call RAG server to get answer
-    answer = ask_rag_server(question)
-    
-    # Reply to user
-    reply = ReplyMessageRequest(
-        reply_token=event.reply_token,
-        messages=[TextMessage(text=answer)],
-    )
-    messaging_api.reply_message(reply)
+    try:
+        question = event.message.text.strip()
+        logging.info(f"Received question: {question}")
+        
+        # Call RAG server to get answer
+        answer = ask_rag_server(question)
+        
+        # Reply to user
+        reply = ReplyMessageRequest(
+            reply_token=event.reply_token,
+            messages=[TextMessage(text=answer)],
+        )
+        messaging_api.reply_message(reply)
+        logging.info("Reply sent successfully")
+    except Exception as e:
+        logging.error(f"Error in handle_message: {e}")
+        import traceback
+        traceback.print_exc()
+        # Try to send error message to user
+        try:
+            error_reply = ReplyMessageRequest(
+                reply_token=event.reply_token,
+                messages=[TextMessage(text="抱歉，系統發生錯誤，請稍後再試。")],
+            )
+            messaging_api.reply_message(error_reply)
+        except:
+            pass
 
 
 # =====================================================

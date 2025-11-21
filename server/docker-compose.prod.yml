@@ -12,9 +12,6 @@ services:
       # Persist vector database and logs only (no code mounting)
       - ./rag_server/chroma_db:/app/chroma_db
       - ./rag_server/logs:/app/logs
-    environment:
-      - GEMINI_API_KEY=${GEMINI_API_KEY}
-      - MODE=rag
     env_file:
       - ./rag_server/.env
     restart: always
@@ -42,10 +39,6 @@ services:
     container_name: ncu-linebot-prod
     ports:
       - "5000:5000"
-    environment:
-      - LINE_CHANNEL_ACCESS_TOKEN=${LINE_CHANNEL_ACCESS_TOKEN}
-      - LINE_CHANNEL_SECRET=${LINE_CHANNEL_SECRET}
-      - RAG_SERVER_URL=http://rag-server:8000/v1/chat/completions
     env_file:
       - ./linebot/.env
     depends_on:
