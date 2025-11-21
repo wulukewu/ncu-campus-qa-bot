@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  rag-server:
+    build:
+      context: ./rag_server
+      dockerfile: Dockerfile
+    container_name: ncu-rag-server-prod
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persist vector database and logs only (no code mounting)
+      - ./rag_server/chroma_db:/app/chroma_db
+      - ./rag_server/logs:/app/logs
+    env_file:
+      - ./rag_server/.env
+    restart: always
+    networks:
+      - ncu-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+
+  linebot:
+    build:
+      context: ./linebot
+      dockerfile: Dockerfile
+    container_name: ncu-linebot-prod
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./linebot/.env
+    depends_on:
+      rag-server:
+        condition: service_healthy
+    restart: always
+    networks:
+      - ncu-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:5000/')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+networks:
+  ncu-network:
+    driver: bridge

@@ -1,24 +1,25 @@
 from __future__ import annotations
 import os, time, argparse, traceback
 from typing import List, Optional
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict
 
-from langchain_ollama import ChatOllama, OllamaEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from DBHandler import DBHandler
 
-try:
-    from langchain_community.vectorstores import Chroma
-except ImportError:
-    Chroma = None
+from langchain_chroma import Chroma
 
 from constants import *
 
-app = FastAPI(title="Unified RAG/LLM Server")
+app = FastAPI(title="NCU RAG Server with Gemini")
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--mode", choices=["rag", "llm"], default=os.getenv("MODE", "rag"))
@@ -56,11 +57,12 @@ class ChatCompletionRequest(BaseModel):
 def ensure_rag_ready(collection_name=COLLECTION_NAME):
     if _state["vs"] is not None:
         return
-    if Chroma is None:
-        raise RuntimeError("Chroma not available; please install langchain_community")
 
     try:
-        emb = OllamaEmbeddings(model=EMBED_MODEL, base_url=OLLAMA_BASE_URL)
+        emb = GoogleGenerativeAIEmbeddings(
+            model=GEMINI_EMBED_MODEL,
+            google_api_key=GEMINI_API_KEY
+        )
         _ = emb.embed_query("ping")
         vs = Chroma(persist_directory=DB_DIR, embedding_function=emb, collection_name=collection_name)
         _state["emb"] = emb
@@ -75,8 +77,8 @@ def health():
     return {
         "ok": True,
         "mode": MODE,
-        "llm_model": LLM_MODEL,
-        "embed_model": EMBED_MODEL,
+        "llm_model": GEMINI_FLASH_MODEL,
+        "embed_model": GEMINI_EMBED_MODEL,
         "db_path": DB_DIR,
         "ready": (_state["vs"] is not None) if MODE == "rag" else True,
         "init_error": _state["err"],
@@ -91,7 +93,7 @@ def debug_files():
 
 @app.get("/v1/models")
 def models():
-    return {"object": "list", "data": [{"id": "ncu-rag-ollama", "object": "model"}]}
+    return {"object": "list", "data": [{"id": "ncu-rag-gemini", "object": "model"}]}
 
 @app.post("/v1/chat/completions")
 def chat(req: ChatCompletionRequest):
@@ -101,13 +103,16 @@ def chat(req: ChatCompletionRequest):
             if m.role == "user":
                 last_user = m.content
 
-        llm = ChatOllama(model=LLM_MODEL, base_url=OLLAMA_BASE_URL, temperature=req.temperature or 0.1)
+        llm = ChatGoogleGenerativeAI(
+            model=GEMINI_FLASH_MODEL,
+            google_api_key=GEMINI_API_KEY,
+            temperature=req.temperature or 0.1
+        )
 
         if MODE == "rag":
             ensure_rag_ready()
             context = dbHandler.retrieve_context(_state['vs'], last_user, req.top_k or TOP_K)
             sys_prompt = SYSTEM_PROMPT.format(context=context)
-            #ans = llm.invoke([SystemMessage(content=sys_prompt), HumanMessage(content=last_user)]).content
             ans = llm.invoke([HumanMessage(content=sys_prompt+last_user)]).content
         else:
             ans = llm.invoke(last_user).content

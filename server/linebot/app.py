@@ -1,5 +1,7 @@
 from flask import Flask, request, abort
-import requests, pandas as pd, os, io, re, logging
+import requests
+import os
+import logging
 from linebot.v3 import WebhookHandler
 from linebot.v3.messaging import (
     Configuration,
@@ -10,7 +12,6 @@ from linebot.v3.messaging import (
 )
 from linebot.v3.webhooks import MessageEvent, TextMessageContent
 from linebot.v3.exceptions import InvalidSignatureError
-from PyPDF2 import PdfReader
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -20,9 +21,7 @@ app = Flask(__name__)
 # === 基本設定 ===
 LINE_CHANNEL_ACCESS_TOKEN = os.getenv("LINE_CHANNEL_ACCESS_TOKEN")
 LINE_CHANNEL_SECRET = os.getenv("LINE_CHANNEL_SECRET")
-LLAMA_API_URL = os.getenv("LLAMA_API_URL")
-
-LOCAL_DOCS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../crawler/docs"))
+RAG_SERVER_URL = os.getenv("RAG_SERVER_URL", "http://127.0.0.1:8000/v1/chat/completions")
 
 config = Configuration(access_token=LINE_CHANNEL_ACCESS_TOKEN)
 api_client = ApiClient(config)
@@ -31,155 +30,128 @@ handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
 logging.basicConfig(level=logging.INFO)
 
-knowledge_base = []  # 所有文件的純文字內容
-
-
-def load_local_files():
-    folders = [
-        "adm_course-form",
-        "adm_course-qa/pdf",
-        "adm_courses/pdf",
-        "adm_freshman/pdf",
-        "adm_news/csv",
-        "adm_registration-form/pdf",
-        "adm_registration-qa/pdf",
-        "adm_regulations/pdf",
-        "adm_statistics",
-        "adm_tution/pdf",
-        "csie_news/csv",
-        "oga_common-qa/csv",
-        "oga_news/csv",
-    ]
-
-    for folder in folders:
-        folder_path = os.path.join(LOCAL_DOCS_PATH, folder)
-        print(f"📂 Checking folder: {folder_path}")
-
-        if not os.path.isdir(folder_path):
-            print(f"❌ Folder not found: {folder_path}")
-            continue
-
-        for root, _, files in os.walk(folder_path):
-            for name in files:
-                if not any(name.endswith(ext) for ext in [".csv", ".txt", ".pdf"]):
-                    continue
-
-                file_path = os.path.join(root, name)
-                print(f"📄 Reading {name}")
-
-                with open(file_path, "rb") as f:
-                    file_bytes = f.read()
-                
-                ext = name.split(".")[-1]
-                text = extract_text(file_bytes, ext)
-
-                knowledge_base.append((folder, text))
-
-    print(f"✅ 知識庫載入完成，共 {len(knowledge_base)} 份文件。")
-
-
-def extract_text(file_bytes, ext):
-    if ext == "csv":
-        try:
-            df = pd.read_csv(io.BytesIO(file_bytes))
-            return df.to_string(index=False)
-        except pd.errors.EmptyDataError:
-            print(f"⚠️  Skipping empty csv file.")
-            return ""
-    elif ext == "txt":
-        return file_bytes.decode("utf-8", errors="ignore")
-    elif ext == "pdf":
-        try:
-            reader = PdfReader(io.BytesIO(file_bytes))
-            text = ""
-            for page in reader.pages:
-                text += page.extract_text() or ""
-            return text
-        except Exception as e:
-            print(f"⚠️  Skipping problematic pdf file: {e}")
-            return ""
-    return ""
-
 
 # =====================================================
-# 搜尋知識庫
+# 呼叫 RAG Server
 # =====================================================
-def search_knowledge(question):
-    question_lower = question.lower()
-    best_match = None
-    best_score = 0
+def ask_rag_server(question):
+    """Call the RAG server with Gemini API to get answers"""
+    try:
+        payload = {
+            "model": "ncu-rag-gemini",
+            "messages": [
+                {"role": "user", "content": question}
+            ],
+            "temperature": 0.1
+        }
 
-    for folder, text in knowledge_base:
-        score = sum(word in text.lower() for word in question_lower.split())
-        if score > best_score:
-            best_score = score
-            best_match = (folder, text[:2000])
-
-    return best_match
-
-
-# =====================================================
-# 呼叫 LLaMA 作答
-# =====================================================
-def ask_llama(question, context):
-    payload = {
-        "model": "llama-3.2-1b-instruct",
-        "messages": [
-            {
-                "role": "system",
-                "content": "你是中央大學智慧客服，根據提供的資料回答問題。",
-            },
-            {"role": "user", "content": f"資料：\n{context}\n\n問題：{question}"},
-        ],
-        "temperature": 0.7,
-        "max_tokens": 500,
-    }
-
-    res = requests.post(LLAMA_API_URL, json=payload)
-    if res.status_code == 200:
-        return res.json()["choices"][0]["message"]["content"]
-
-    return f"模型錯誤：HTTP {res.status_code}"
+        logging.info(f"Calling RAG server: {RAG_SERVER_URL}")
+        res = requests.post(RAG_SERVER_URL, json=payload, timeout=30)
+        
+        if res.status_code == 200:
+            response_data = res.json()
+            answer = response_data["choices"][0]["message"]["content"]
+            return answer
+        else:
+            logging.error(f"RAG server error: HTTP {res.status_code}")
+            return f"抱歉，系統暫時無法回應。請稍後再試。(錯誤碼: {res.status_code})"
+    except requests.exceptions.Timeout:
+        logging.error("RAG server timeout")
+        return "抱歉，系統回應時間過長。請稍後再試。"
+    except Exception as e:
+        logging.error(f"Error calling RAG server: {e}")
+        return "抱歉，系統發生錯誤。請稍後再試。"
 
 
 # =====================================================
 # LINE webhook
 # =====================================================
+@app.route("/")
+def home():
+    """Simple health check endpoint"""
+    return {
+        "status": "running",
+        "service": "NCU LINE Bot",
+        "rag_server": RAG_SERVER_URL,
+        "endpoints": {
+            "webhook": "/callback",
+            "health": "/"
+        }
+    }
+
+
 @app.route("/callback", methods=["POST"])
 def callback():
-    signature = request.headers["X-Line-Signature"]
+    # Get X-Line-Signature header
+    signature = request.headers.get("X-Line-Signature")
+    if not signature:
+        logging.error("Missing X-Line-Signature header")
+        abort(400)
+    
+    # Get request body
     body = request.get_data(as_text=True)
+    logging.info(f"Request body: {body}")
 
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
+        logging.error("Invalid signature")
         abort(400)
+    except Exception as e:
+        logging.error(f"Error handling webhook: {e}")
+        import traceback
+        traceback.print_exc()
+        abort(500)
 
     return "OK"
 
 
 @handler.add(MessageEvent, message=TextMessageContent)
 def handle_message(event):
-    question = event.message.text.strip()
-
-    match = search_knowledge(question)
-    if match:
-        folder, context = match
-        answer = ask_llama(question, context)
-    else:
-        answer = "抱歉，我目前找不到相關資料。"
-
-    reply = ReplyMessageRequest(
-        reply_token=event.reply_token,
-        messages=[TextMessage(text=answer)],
-    )
-    messaging_api.reply_message(reply)
+    """Handle incoming messages from LINE"""
+    try:
+        question = event.message.text.strip()
+        logging.info(f"Received question: {question}")
+        
+        # Call RAG server to get answer
+        answer = ask_rag_server(question)
+        
+        # Reply to user
+        reply = ReplyMessageRequest(
+            reply_token=event.reply_token,
+            messages=[TextMessage(text=answer)],
+        )
+        messaging_api.reply_message(reply)
+        logging.info("Reply sent successfully")
+    except Exception as e:
+        logging.error(f"Error in handle_message: {e}")
+        import traceback
+        traceback.print_exc()
+        # Try to send error message to user
+        try:
+            error_reply = ReplyMessageRequest(
+                reply_token=event.reply_token,
+                messages=[TextMessage(text="抱歉，系統發生錯誤，請稍後再試。")],
+            )
+            messaging_api.reply_message(error_reply)
+        except:
+            pass
 
 
 # =====================================================
 # 啟動伺服器
 # =====================================================
 if __name__ == "__main__":
-    print("📚 從本地端載入資料中...")
-    load_local_files()
-    app.run(port=5000)
+    import os
+    
+    print("🤖 NCU LINE Bot with Gemini RAG Server")
+    print(f"📡 RAG Server URL: {RAG_SERVER_URL}")
+    print(f"🌐 Server will be accessible at: http://0.0.0.0:5000")
+    
+    # Get debug mode from environment
+    debug_mode = os.getenv('FLASK_DEBUG', '0') == '1'
+    
+    if debug_mode:
+        print("⚠️  Running in DEBUG mode with hot reload")
+    
+    app.run(host='0.0.0.0', port=5000, debug=debug_mode)
