@@ -1,6 +1,6 @@
 import os
 
-DOCS_DIR = r"./docs"
+DOCS_DIR = r"../../crawler/docs"
 DB_DIR = r"./chroma_db"
 COLLECTION_NAME = "ncu"
 TOP_K = 10

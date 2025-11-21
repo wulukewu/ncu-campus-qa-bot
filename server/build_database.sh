@@ -48,20 +48,6 @@ if grep -q "your_gemini_api_key_here" "$RAG_SERVER_DIR/.env"; then
     exit 1
 fi
 
-# --- Check if news data exists ---
-NEWS_FILE="$RAG_SERVER_DIR/news/csie_news.csv"
-if [ ! -f "$NEWS_FILE" ]; then
-    echo "⚠️  Warning: News data not found at: $NEWS_FILE"
-    echo "   The database will be created but may be empty."
-    echo "   Consider running the crawler first to get data."
-    read -p "   Continue anyway? (y/N): " -n 1 -r
-    echo
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-        echo "Aborted."
-        exit 1
-    fi
-fi
-
 # --- Virtual Environment Setup ---
 echo "Step 1: Setting up Python environment"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
