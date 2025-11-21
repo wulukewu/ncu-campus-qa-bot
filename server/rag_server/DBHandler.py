@@ -2,13 +2,14 @@ import traceback
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import pandas as pd
 from pathlib import Path
-from langchain_ollama import OllamaEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_core.documents import Document
+from dotenv import load_dotenv
 
-try:
-    from langchain_community.vectorstores import Chroma
-except ImportError:
-    Chroma = None
+# Load environment variables from .env file
+load_dotenv()
+
+from langchain_chroma import Chroma
     
 from constants import *
 
@@ -54,7 +55,10 @@ class DBHandler:
 
     #建向量庫
     def buildDB(self, collection_name, docs, doc_split=False):
-        emb = OllamaEmbeddings(model=EMBED_MODEL, base_url=OLLAMA_BASE_URL)
+        emb = GoogleGenerativeAIEmbeddings(
+            model=GEMINI_EMBED_MODEL,
+            google_api_key=GEMINI_API_KEY
+        )
         _ = emb.embed_query("ping")
         print("Embedding warmup OK")
 
@@ -110,7 +114,10 @@ if __name__ == "__main__":
 
     
     #測試檢索功能用的
-    emb = OllamaEmbeddings(model=EMBED_MODEL, base_url=OLLAMA_BASE_URL)
+    emb = GoogleGenerativeAIEmbeddings(
+        model=GEMINI_EMBED_MODEL,
+        google_api_key=GEMINI_API_KEY
+    )
     _ = emb.embed_query("ping")
     vs = Chroma(persist_directory=DB_DIR, embedding_function=emb, collection_name=COLLECTION_NAME)
     query = input("請輸入文字查詢相似文章:\n")
