@@ -28,6 +28,7 @@ help:
 	@echo "Maintenance:"
 	@echo "  make shell-rag    - Open shell in RAG server container"
 	@echo "  make shell-bot    - Open shell in LINE bot container"
+	@echo "  make setup-db     - Build vector database locally (before first run)"
 	@echo "  make build-db     - Build vector database in container"
 	@echo "  make clean        - Remove containers and volumes"
 	@echo "  make test-health  - Test service health endpoints"
@@ -102,6 +103,13 @@ shell-bot:
 # Database operations
 build-db:
 	docker-compose exec rag-server python DBHandler.py
+
+build-db-local:
+	./build_database.sh
+
+setup-db:
+	@echo "🏗️  Building vector database..."
+	@./build_database.sh
 
 # Health checks
 test-health:

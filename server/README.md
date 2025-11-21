@@ -28,7 +28,7 @@
 
 1. **RAG Server** (`rag_server/`)
    - 使用 Gemini `text-embedding-004` 做文本嵌入
-   - 使用 Gemini `gemini-2.0-flash-exp` 生成回答
+   - 使用 Gemini `gemini-2.5-flash` 生成回答
    - ChromaDB 儲存向量資料庫
    - 目前資料來源：news/csie_news.csv
 

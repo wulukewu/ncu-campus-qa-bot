@@ -54,4 +54,4 @@ uvicorn server:app --host 127.0.0.1 --port 8000
 ## 使用的模型
 
 - **Embedding**: `text-embedding-004` (Gemini)
-- **LLM**: `gemini-2.0-flash-exp` (Gemini Flash)
+- **LLM**: `gemini-2.5-flash` (Gemini Flash)
