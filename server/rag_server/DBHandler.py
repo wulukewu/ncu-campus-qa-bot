@@ -31,22 +31,21 @@ class DBHandler:
         try:
             self._log_info(f"Processing PDF: {file_path.name}")
             reader = PdfReader(file_path)
-            docs = []
-            for i, page in enumerate(reader.pages):
-                content = page.extract_text()
-                if not content:
-                    continue
-                
-                metadata = {
-                    'id': f"{file_path.stem}_{i+1}",
-                    'title': file_path.stem,
-                    'source': str(file_path.resolve()),
-                    'category': file_path.parent.name,
-                    'date': ""  # PDFs don't have a reliable date field
-                }
-                doc = Document(page_content=content, metadata=metadata)
-                docs.append(doc)
-            return docs
+            full_text = "".join(page.extract_text() for page in reader.pages if page.extract_text())
+
+            if not full_text:
+                self._log_info(f"No text extracted from PDF: {file_path.name}")
+                return []
+
+            metadata = {
+                'id': file_path.stem,
+                'title': file_path.stem,
+                'source': str(file_path.resolve()),
+                'category': file_path.parent.name,
+                'date': ""  # PDFs don't have a reliable date field
+            }
+            doc = Document(page_content=full_text, metadata=metadata)
+            return [doc]
         except Exception as e:
             self._log_error(f"Failed to process PDF {file_path.name}: {e}")
             return []
@@ -54,29 +53,54 @@ class DBHandler:
     def _load_csv(self, file_path: Path) -> list[Document]:
         try:
             self._log_info(f"Processing CSV: {file_path.name}")
-            # Read CSV without header
-            df = pd.read_csv(file_path, header=None, encoding="utf-8", on_bad_lines='skip')
+
+            # Special handling for news.csv, which has a clear structure
+            if 'news.csv' in file_path.name:
+                try:
+                    df = pd.read_csv(file_path, encoding="utf-8")
+                    # Check for expected columns
+                    expected_cols = ['list_title', 'detail_text', 'url', 'category', 'list_date']
+                    if not all(col in df.columns for col in expected_cols):
+                         raise ValueError(f"Missing one of the expected columns in {file_path.name}")
+
+                    docs = []
+                    for i, row in df.iterrows():
+                        content = f"[標題] {row['list_title']}\n[內容] {row['detail_text']}"
+                        metadata = {
+                            'id': f"{file_path.stem}_{i+1}",
+                            'title': str(row['list_title']),
+                            'source': str(row['url']),
+                            'category': str(row['category']),
+                            'date': str(row['list_date'])
+                        }
+                        doc = Document(page_content=content, metadata=metadata)
+                        docs.append(doc)
+                    return docs
+                except Exception as e:
+                    self._log_error(f"Could not process structured CSV {file_path.name}: {e}. Falling back to generic processing.")
             
+            # Generic processing for all other CSVs
+            df = pd.read_csv(file_path, header=None, encoding="utf-8", on_bad_lines='skip')
             if df.empty:
-                self._log_info(f"CSV file is empty: {file_path.name}")
+                self._log_info(f"CSV file is empty or could not be read: {file_path.name}")
+                return []
+            
+            # Concatenate all rows into a single document
+            full_content = "\n".join([",".join(row.astype(str)) for _, row in df.iterrows()])
+            
+            if not full_content.strip():
+                self._log_info(f"No content in CSV: {file_path.name}")
                 return []
 
-            docs = []
-            for i, row in df.iterrows():
-                # Concatenate all columns into a single content string
-                content = ", ".join(row.astype(str))
-                
-                metadata = {
-                    'id': f"{file_path.stem}_{i+1}",
-                    'title': file_path.stem,
-                    'source': str(file_path.resolve()),
-                    'category': file_path.parent.name,
-                    'date': "" # CSVs may not have a reliable date field
-                }
-                
-                doc = Document(page_content=content, metadata=metadata)
-                docs.append(doc)
-            return docs
+            metadata = {
+                'id': file_path.stem,
+                'title': file_path.stem,
+                'source': str(file_path.resolve()),
+                'category': file_path.parent.name,
+                'date': ""
+            }
+            return [Document(page_content=full_content, metadata=metadata)]
+
         except Exception as e:
             self._log_error(f"Failed to process CSV {file_path.name}: {e}")
             return []
@@ -130,7 +154,7 @@ class DBHandler:
 
         if doc_split:
             splitter = RecursiveCharacterTextSplitter(
-                chunk_size=1000, chunk_overlap=100,
+                chunk_size=2000, chunk_overlap=200,
                 separators=["\n\n", "\n", "。", "，", " ", ""],
             )
             docs = splitter.split_documents(docs)
