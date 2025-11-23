@@ -9,7 +9,7 @@ uvicorn[standard]
 pydantic==2.*
 onnxruntime==1.17.3
 python-dotenv
-
 pandas
 numpy<2
 cryptography
+pysqlite3-binary

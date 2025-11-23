@@ -1,4 +1,5 @@
 import traceback
+import sys
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import pandas as pd
 from pathlib import Path
@@ -7,12 +8,23 @@ from langchain_core.documents import Document
 from dotenv import load_dotenv
 from pypdf import PdfReader
 
+# ChromaDB patch for Windows
+try:
+    if sys.platform == "win32":
+        import pysqlite3
+        sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
+        print("✅ Patched sqlite3 with pysqlite3-binary for Windows.")
+except (ImportError, ModuleNotFoundError):
+    print("ℹ️  pysqlite3-binary not found, using standard sqlite3.")
+    pass
+
 # Load environment variables from .env file
 load_dotenv()
 
 from langchain_chroma import Chroma
 
 from constants import *
+
 
 
 # 用於儲存向量資料庫以及檢索向量資料庫
@@ -141,26 +153,28 @@ class DBHandler:
         import time
         from langchain_google_genai._common import GoogleGenerativeAIError
 
+        self._log_info("Initializing Gemini Embeddings...")
         emb = GoogleGenerativeAIEmbeddings(
             model=GEMINI_EMBED_MODEL,
             google_api_key=GEMINI_API_KEY
         )
         try:
             _ = emb.embed_query("ping")
-            print("Embedding warmup OK")
+            self._log_info("Embedding warmup OK")
         except Exception as e:
             self._log_error(f"Failed to initialize Gemini Embeddings. Check API key. Error: {e}")
             return
 
         if doc_split:
+            self._log_info("Splitting documents into chunks...")
             splitter = RecursiveCharacterTextSplitter(
                 chunk_size=2000, chunk_overlap=200,
                 separators=["\n\n", "\n", "。", "，", " ", ""],
             )
             docs = splitter.split_documents(docs)
-            print(f"Split into chunks: {len(docs)}")
+            self._log_info(f"Split into {len(docs)} chunks.")
 
-        print(f"\nProcessing {len(docs)} documents in batches of {batch_size}...")
+        self._log_info(f"Processing {len(docs)} documents in batches of {batch_size}...")
 
         # Process in batches with retry logic
         max_retries = 3
@@ -172,19 +186,20 @@ class DBHandler:
         vs = None
         for attempt in range(max_retries):
             try:
-                print(f"Creating vector store with first {len(first_batch)} documents (attempt {attempt + 1}/{max_retries})...")
+                self._log_info(f"Attempting to create vector store with first {len(first_batch)} documents (attempt {attempt + 1}/{max_retries})...")
                 vs = Chroma.from_documents(
                     documents=first_batch,
                     embedding=emb,
                     persist_directory=DB_DIR,
                     collection_name=collection_name,
                 )
+                self._log_info("Successfully created vector store.")
                 break
             except (GoogleGenerativeAIError, Exception) as e:
                 retry_delay = 5 * (attempt + 1)
-                print(f"⚠️  Error creating DB: {str(e)[:150]}...")
+                self._log_error(f"Error creating DB: {str(e)[:250]}...")
                 if attempt < max_retries - 1:
-                    print(f"   Retrying in {retry_delay} seconds...")
+                    self._log_info(f"Retrying in {retry_delay} seconds...")
                     time.sleep(retry_delay)
                 else:
                     self._log_error("Failed to create vector store after multiple retries.")
@@ -192,6 +207,7 @@ class DBHandler:
 
         # Add remaining documents in batches
         if vs and remaining_docs:
+            self._log_info("Adding remaining documents in batches...")
             total_batches = (len(remaining_docs) + batch_size - 1) // batch_size
             for i in range(0, len(remaining_docs), batch_size):
                 batch = remaining_docs[i:i + batch_size]
@@ -199,22 +215,22 @@ class DBHandler:
 
                 for attempt in range(max_retries):
                     try:
-                        print(f"Processing batch {batch_num}/{total_batches} ({len(batch)} docs, attempt {attempt + 1}/{max_retries})...")
+                        self._log_info(f"Processing batch {batch_num}/{total_batches} ({len(batch)} docs, attempt {attempt + 1}/{max_retries})...")
                         vs.add_documents(batch)
                         time.sleep(1)  # Rate limiting
                         break
                     except (GoogleGenerativeAIError, Exception) as e:
                         retry_delay = 5 * (attempt + 1)
-                        print(f"⚠️  Error on batch {batch_num}: {str(e)[:150]}...")
+                        self._log_error(f"Error on batch {batch_num}: {str(e)[:250]}...")
                         if attempt < max_retries - 1:
-                            print(f"   Retrying in {retry_delay} seconds...")
+                            self._log_info(f"Retrying in {retry_delay} seconds...")
                             time.sleep(retry_delay)
                         else:
-                            print(f"❌ Failed to process batch {batch_num} after {max_retries} attempts. Skipping.")
+                            self._log_error(f"Failed to process batch {batch_num} after {max_retries} attempts. Skipping.")
                             break
 
-        print(f"\n✅ Successfully processed documents.")
-        print(f"Chroma DB built at: {Path(DB_DIR).resolve()}")
+        self._log_info("Successfully processed all documents.")
+        self._log_info(f"Chroma DB built at: {Path(DB_DIR).resolve()}")
 
 
     # 從vecter_store檢所前k個最相似的docs
