@@ -1,5 +1,4 @@
 import traceback
-import sys
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import pandas as pd
 from pathlib import Path
@@ -7,16 +6,6 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_core.documents import Document
 from dotenv import load_dotenv
 from pypdf import PdfReader
-
-# ChromaDB patch for Windows
-try:
-    if sys.platform == "win32":
-        import pysqlite3
-        sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
-        print("✅ Patched sqlite3 with pysqlite3-binary for Windows.")
-except (ImportError, ModuleNotFoundError):
-    print("ℹ️  pysqlite3-binary not found, using standard sqlite3.")
-    pass
 
 # Load environment variables from .env file
 load_dotenv()
@@ -176,58 +165,37 @@ class DBHandler:
 
         self._log_info(f"Processing {len(docs)} documents in batches of {batch_size}...")
 
-        # Process in batches with retry logic
-        max_retries = 3
-        
-        # Create vector store with first batch
-        first_batch = docs[:batch_size]
-        remaining_docs = docs[batch_size:]
-        
-        vs = None
-        for attempt in range(max_retries):
-            try:
-                self._log_info(f"Attempting to create vector store with first {len(first_batch)} documents (attempt {attempt + 1}/{max_retries})...")
-                vs = Chroma.from_documents(
-                    documents=first_batch,
-                    embedding=emb,
-                    persist_directory=DB_DIR,
-                    collection_name=collection_name,
-                )
-                self._log_info("Successfully created vector store.")
-                break
-            except (GoogleGenerativeAIError, Exception) as e:
-                retry_delay = 5 * (attempt + 1)
-                self._log_error(f"Error creating DB: {str(e)[:250]}...")
-                if attempt < max_retries - 1:
-                    self._log_info(f"Retrying in {retry_delay} seconds...")
-                    time.sleep(retry_delay)
-                else:
-                    self._log_error("Failed to create vector store after multiple retries.")
-                    raise
+        # Create an empty Chroma vector store
+        self._log_info("Initializing empty Chroma vector store...")
+        vs = Chroma(
+            collection_name=collection_name,
+            embedding_function=emb,
+            persist_directory=DB_DIR
+        )
+        self._log_info("Empty vector store initialized.")
 
-        # Add remaining documents in batches
-        if vs and remaining_docs:
-            self._log_info("Adding remaining documents in batches...")
-            total_batches = (len(remaining_docs) + batch_size - 1) // batch_size
-            for i in range(0, len(remaining_docs), batch_size):
-                batch = remaining_docs[i:i + batch_size]
-                batch_num = (i // batch_size) + 1
-
-                for attempt in range(max_retries):
-                    try:
-                        self._log_info(f"Processing batch {batch_num}/{total_batches} ({len(batch)} docs, attempt {attempt + 1}/{max_retries})...")
-                        vs.add_documents(batch)
-                        time.sleep(1)  # Rate limiting
+        # Add documents in batches
+        self._log_info("Adding documents in batches...")
+        total_batches = (len(docs) + batch_size - 1) // batch_size
+        for i in range(0, len(docs), batch_size):
+            batch = docs[i:i + batch_size]
+            batch_num = (i // batch_size) + 1
+            
+            for attempt in range(3): # max_retries
+                try:
+                    self._log_info(f"Processing batch {batch_num}/{total_batches} ({len(batch)} docs, attempt {attempt + 1}/3)...")
+                    vs.add_documents(batch)
+                    time.sleep(1)  # Rate limiting
+                    break
+                except (GoogleGenerativeAIError, Exception) as e:
+                    retry_delay = 5 * (attempt + 1)
+                    self._log_error(f"Error on batch {batch_num}: {str(e)[:250]}...")
+                    if attempt < 2: # max_retries - 1
+                        self._log_info(f"Retrying in {retry_delay} seconds...")
+                        time.sleep(retry_delay)
+                    else:
+                        self._log_error(f"Failed to process batch {batch_num} after 3 attempts. Skipping.")
                         break
-                    except (GoogleGenerativeAIError, Exception) as e:
-                        retry_delay = 5 * (attempt + 1)
-                        self._log_error(f"Error on batch {batch_num}: {str(e)[:250]}...")
-                        if attempt < max_retries - 1:
-                            self._log_info(f"Retrying in {retry_delay} seconds...")
-                            time.sleep(retry_delay)
-                        else:
-                            self._log_error(f"Failed to process batch {batch_num} after {max_retries} attempts. Skipping.")
-                            break
 
         self._log_info("Successfully processed all documents.")
         self._log_info(f"Chroma DB built at: {Path(DB_DIR).resolve()}")
