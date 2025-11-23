@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  db-builder:
+    build:
+      context: ./rag_server # Set context to rag_server so requirements.txt is found
+      dockerfile: Dockerfile.dev
+    container_name: ncu-db-builder
+    volumes:
+      # Mount the entire project root to a different location in the container
+      - ..:/project
+      # Mount the .env file
+      - ./rag_server/.env:/app/.env
+    working_dir: /project/server # Set working directory to where build_database.sh is
+    command: ["/bin/bash", "-c", "bash build_database.sh"]
+    environment:
+      - AUTO_REBUILD_DB=true
+    networks:
+      - ncu-network
+
+networks:
+  ncu-network:
+    driver: bridge

@@ -87,14 +87,19 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 
 if [ -d "chroma_db" ]; then
     echo "⚠️  Warning: Existing database found at: chroma_db/"
-    echo ""
-    echo "Options:"
-    echo "  1) Remove and rebuild (recommended)"
-    echo "  2) Keep and append (may cause duplicates)"
-    echo "  3) Abort"
-    echo ""
-    read -p "Choose (1/2/3): " -n 1 -r
-    echo
+    if [ "$AUTO_REBUILD_DB" = "true" ]; then
+        echo "   AUTO_REBUILD_DB is true. Automatically removing and rebuilding..."
+        REPLY=1
+    else
+        echo ""
+        echo "Options:"
+        echo "  1) Remove and rebuild (recommended)"
+        echo "  2) Keep and append (may cause duplicates)"
+        echo "  3) Abort"
+        echo ""
+        read -p "Choose (1/2/3): " -n 1 -r
+        echo
+    fi
     
     case $REPLY in
         1)
