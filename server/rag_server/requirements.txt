@@ -4,10 +4,7 @@ langchain>=0.3.0
 langchain-core
 langchain-chroma
 
-langchain_openai
-langchain_huggingface
 langchain_ollama
-langchain_voyageai
 langchain_community
 
 langchain-google-genai
