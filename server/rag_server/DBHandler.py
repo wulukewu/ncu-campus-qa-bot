@@ -5,11 +5,7 @@ from pathlib import Path
 from langchain_chroma import Chroma
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-from langchain_openai import OpenAIEmbeddings
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_ollama import OllamaEmbeddings
-from langchain_voyageai import VoyageAIEmbeddings
-from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 
 from langchain_core.documents import Document
 from pypdf import PdfReader
@@ -29,34 +25,10 @@ class DBHandler:
         self.emb=self.getEmbeddings()
 
     def getEmbeddings(self):
-        embedding_model_case = 1
-        match embedding_model_case:
-            case 0:
-                return OpenAIEmbeddings(
-                    model="OpenAI-3-small",
-                    openai_api_key=OPENAI_API_KEY,
-                    base_url="https://api.openai.com/v1"
-                )
-            case 1:
-                return OllamaEmbeddings(
-                    model="qwen3-embedding:0.6b",
-                    base_url="http://localhost:11434"
-                )
-            case 2:
-                return VoyageAIEmbeddings(
-                    model="voyage-3.5-lite",
-                    voyage_api_key=VOYAGE_API_KEY
-                )
-            case 3:
-                return HuggingFaceInferenceAPIEmbeddings(
-                    model_name="Qwen/Qwen3-Embedding-4B",
-                    api_key=HF_API_KEY
-                )
-            case 4:
-                return GoogleGenerativeAIEmbeddings(
-                    model="models/text-embedding-004",
-                    google_api_key=GEMINI_API_KEY
-                )
+        return OllamaEmbeddings(
+            model=OLLAMA_EMBED_MODEL,
+            base_url=OLLAMA_BASE_URL
+        )
 
     def _log_error(self, message):
         print(f"❌ Error: {message}")
