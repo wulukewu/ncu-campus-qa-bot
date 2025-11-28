@@ -31,10 +31,13 @@ class DBHandler:
         if not base_url:
             # 如果未設置環境變數，則根據是否在 Docker 中來決定預設值
             if os.path.exists('/.dockerenv'):
-                base_url = "http://host.docker.internal:11434"
+                # In a container, connect to the 'ollama' service
+                base_url = "http://ollama:11434"
             else:
+                # Running locally, connect to localhost
                 base_url = "http://localhost:11434"
         
+        print(f"ℹ️  Connecting to Ollama at: {base_url}")
         return OllamaEmbeddings(
             model=OLLAMA_EMBED_MODEL,
             base_url=base_url

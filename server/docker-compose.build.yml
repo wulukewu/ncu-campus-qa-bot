@@ -14,9 +14,14 @@ services:
     working_dir: /project/server # Set working directory to where build_database.sh is
     command: ["/bin/bash", "-c", "bash build_database.sh"]
     environment:
+      - ANONYMIZED_TELEMETRY=False
       - AUTO_REBUILD_DB=true
     networks:
       - ncu-network
+    deploy:
+      resources:
+        limits:
+          memory: 8G
 
 networks:
   ncu-network:

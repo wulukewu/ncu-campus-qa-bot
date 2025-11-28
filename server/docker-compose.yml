@@ -18,6 +18,8 @@ services:
       - ./rag_server/logs:/app/logs
     env_file:
       - ./rag_server/.env
+    environment:
+      - ANONYMIZED_TELEMETRY=False
     restart: unless-stopped
     networks:
       - ncu-network

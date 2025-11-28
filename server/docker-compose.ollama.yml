@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  ollama:
+    build:
+      context: ./ollama
+    container_name: ncu-ollama-service
+    ports:
+      - "11434:11434"
+    networks:
+      - ncu-network
+    volumes:
+      - ollama-data:/root/.ollama
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G # Adjust as needed
+        reservations:
+          cpus: '1'
+          memory: 2G
+
+networks:
+  ncu-network:
+    driver: bridge
+
+volumes:
+  ollama-data:
