@@ -8,7 +8,11 @@ TOP_K = 10
 # Gemini API settings
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 GEMINI_FLASH_MODEL = "gemini-2.5-flash"
-GEMINI_EMBED_MODEL = os.getenv("GEMINI_EMBED_MODEL", "models/embedding-001")
+
+# Ollama embedding settings
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://host.docker.internal:11434")
+OLLAMA_EMBED_MODEL = "qwen3-embedding:0.6b"
+
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 VOYAGE_API_KEY = os.getenv("VOYAGE_API_KEY", "")
