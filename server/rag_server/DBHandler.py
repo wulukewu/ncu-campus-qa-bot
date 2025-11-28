@@ -29,8 +29,8 @@ class DBHandler:
         self.emb=self.getEmbeddings()
 
     def getEmbeddings(self):
-        i = 1
-        match i:
+        embedding_model_case = 1
+        match embedding_model_case:
             case 0:
                 return OpenAIEmbeddings(
                     model="OpenAI-3-small",
