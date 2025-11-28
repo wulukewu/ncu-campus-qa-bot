@@ -73,19 +73,152 @@ We use a Docker Compose service to run the `build_database.sh` script in an isol
     *   Execute the `build_database.sh` script, which will create the `chroma_db` directory inside `server/rag_server`.
     *   The `--remove-orphans` flag ensures that any old, unused containers are cleaned up.
 
-## Run Services
+## Flexible Ollama Setup
 
-After the RAG database is built, you can run the `rag-server` and `linebot` services.
+The application is designed to work flexibly with Ollama, whether it's running locally on your host machine or within a Docker container managed by Docker Compose. You can choose the setup that best suits your needs.
 
-1.  **Ensure you are in the `server` directory**:
+### **First, a one-time setup:**
+
+Make sure your `server/rag_server/.env` file has the `OLLAMA_BASE_URL` variable. This will be the key to switching between a Dockerized Ollama and a local one.
+
+```
+# server/rag_server/.env
+
+# ... other variables ...
+
+# Set this to point to your Ollama instance.
+# Leave it unset if you want the application to automatically detect the Ollama URL.
+# (Defaults to http://ollama:11434 in Docker, http://localhost:11434 locally)
+# OLLAMA_BASE_URL=
+```
+*Note: If you are running the `rag-server` or `db-builder` in Docker and want to connect to a host-based Ollama, you might need to set `OLLAMA_BASE_URL=http://host.docker.internal:11434` in your `server/rag_server/.env` file and ensure your host Ollama is listening on `0.0.0.0` (start with `OLLAMA_HOST=0.0.0.0 ollama serve`).*
+
+---
+
+### **Case 1: Run App in Docker, Ollama in Docker (Fully Containerized)**
+
+This is the recommended, fully portable setup. It spins up both your application services and an Ollama container, automatically pulling the required models.
+
+```bash
+# In the 'server' directory, run:
+docker-compose -f docker-compose.yml -f docker-compose.ollama.yml up --build
+```
+*   **How it works:** This command starts `rag-server`, `linebot`, and the `ollama` container. The Python code automatically connects to the `ollama` service at `http://ollama:11434` within the Docker network.
+
+---
+
+### **Case 2: Run App in Docker, Ollama on Localhost (Using Host's Ollama)**
+
+This is for when you want your application in Docker but prefer to use an Ollama instance running directly on your host machine.
+
+1.  **Ensure your local Ollama is running and accessible:**
+    *   Start your local Ollama server with `OLLAMA_HOST=0.0.0.0 ollama serve`.
+    *   Make sure the `qwen3-embedding:0.6b` model is pulled (`ollama pull qwen3-embedding:0.6b`).
+
+2.  **Set your `OLLAMA_BASE_URL` in `.env`:**
+    ```
+    # in server/rag_server/.env
+    OLLAMA_BASE_URL=http://host.docker.internal:11434
+    ```
+
+3.  **Run Docker Compose (without the ollama service file):**
+    ```bash
+    # In the 'server' directory, run:
+    docker-compose up --build
+    ```
+*   **How it works:** The `rag-server` Docker container reads `OLLAMA_BASE_URL` from its environment and connects back to your host machine's Ollama instance.
+
+---
+
+### **Case 3: Run App on Localhost, Ollama on Localhost**
+
+This is for running the Python scripts directly on your machine, connecting to a local Ollama instance.
+
+1.  **Ensure your local Ollama is running and accessible:**
+    *   Start your local Ollama server with `OLLAMA_HOST=0.0.0.0 ollama serve`.
+    *   Make sure the `qwen3-embedding:0.6b` model is pulled (`ollama pull qwen3-embedding:0.6b`).
+
+2.  **Navigate to the `rag_server` directory and activate venv:**
+    ```bash
+    cd server/rag_server
+    source venv/bin/activate
+    ```
+
+3.  **Ensure `OLLAMA_BASE_URL` is unset or set to `http://localhost:11434` in your environment (or `server/rag_server/.env`):**
+    ```
+    # in server/rag_server/.env
+    OLLAMA_BASE_URL=http://localhost:11434
+    ```
+
+4.  **Run the server:**
+    ```bash
+    python server.py
+    ```
+    *(To build the database locally, you would run `python DBHandler.py`)*
+
+---
+
+### **Case 4: Run App on Localhost, Ollama in Docker**
+
+This is less common but demonstrates the flexibility.
+
+1.  **Start ONLY the Ollama container:**
+    ```bash
+    # In the 'server' directory, run:
+    docker-compose -f docker-compose.ollama.yml up --build
+    ```
+
+2.  **Navigate to the `rag_server` directory and activate venv:**
+    ```bash
+    cd server/rag_server
+    source venv/bin/activate
+    ```
+
+3.  **Ensure `OLLAMA_BASE_URL` points to your host's exposed Ollama port:**
+    ```
+    # in server/rag_server/.env
+    OLLAMA_BASE_URL=http://localhost:11434
+    ```
+
+4.  **Run the server:**
+    ```bash
+    python server.py
+    ```
+*   **How it works:** Your local Python script connects to `localhost:11434`, which is the port exposed by the Ollama container on your host machine.
+
+---
+
+## Build RAG Database
+
+The RAG database needs to be built before the `rag-server` can function. This process involves:
+1.  Collecting documents from `crawler/docs`.
+2.  Processing these documents (text extraction from PDFs, parsing CSVs).
+3.  Generating embeddings for the processed text.
+4.  Storing the embeddings in a Chroma vector database.
+
+We use a Docker Compose service to run the `build_database.sh` script in an isolated environment.
+
+1.  **Ensure your `.env` file is configured**: Make sure `server/rag_server/.env` contains your `GEMINI_API_KEY`.
+2.  **Navigate to the `server` directory**:
     ```bash
     cd server
     ```
-2.  **Start the services**:
-    ```bash
-    docker-compose up
-    ```
-    This will start `rag-server` and `linebot` containers, exposing their respective ports (8000 for `rag-server`, 5010 for `linebot`'s internal 5000).
+3.  **Run the database build command (choose one):**
+    *   **Using a Dockerized Ollama (recommended for portability):**
+        ```bash
+        docker-compose -f docker-compose.build.yml -f docker-compose.ollama.yml up --build --remove-orphans
+        ```
+    *   **Using a Localhost Ollama (requires host Ollama running with `OLLAMA_HOST=0.0.0.0` and `OLLAMA_BASE_URL=http://host.docker.internal:11434` in `server/rag_server/.env`):**
+        ```bash
+        docker-compose -f docker-compose.build.yml up --build --remove-orphans
+        ```
+
+    This command will:
+    *   Build the `db-builder` Docker image.
+    *   Start a temporary container.
+    *   Mount the necessary project directories (including `crawler/docs` and `server/rag_server`) into the container.
+    *   Execute the `build_database.sh` script, which will create the `chroma_db` directory inside `server/rag_server`.
+    *   The `--remove-orphans` flag ensures that any old, unused containers are cleaned up.
 
 ## Testing
 
