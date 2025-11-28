@@ -1,16 +1,22 @@
 import traceback
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 import pandas as pd
+import shutil
 from pathlib import Path
+from langchain_chroma import Chroma
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+from langchain_openai import OpenAIEmbeddings
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_ollama import OllamaEmbeddings
+from langchain_voyageai import VoyageAIEmbeddings
+from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
+
 from langchain_core.documents import Document
-from dotenv import load_dotenv
 from pypdf import PdfReader
 
 # Load environment variables from .env file
+from dotenv import load_dotenv
 load_dotenv()
-
-from langchain_chroma import Chroma
 
 from constants import *
 
@@ -20,6 +26,37 @@ class DBHandler:
     def __init__(self):
         Path(DB_DIR).mkdir(parents=True, exist_ok=True)
         self.docs_dir = Path(DOCS_DIR)
+        self.emb=self.getEmbeddings()
+
+    def getEmbeddings(self):
+        i = 1
+        match i:
+            case 0:
+                return OpenAIEmbeddings(
+                    model="OpenAI-3-small",
+                    openai_api_key=OPENAI_API_KEY,
+                    base_url="https://api.openai.com/v1"
+                )
+            case 1:
+                return OllamaEmbeddings(
+                    model="qwen3-embedding:0.6b",
+                    base_url="http://localhost:11434"
+                )
+            case 2:
+                return VoyageAIEmbeddings(
+                    model="voyage-3.5-lite",
+                    voyage_api_key=VOYAGE_API_KEY
+                )
+            case 3:
+                return HuggingFaceInferenceAPIEmbeddings(
+                    model_name="Qwen/Qwen3-Embedding-4B",
+                    api_key=HF_API_KEY
+                )
+            case 4:
+                return GoogleGenerativeAIEmbeddings(
+                    model="models/text-embedding-004",
+                    google_api_key=GEMINI_API_KEY
+                )
 
     def _log_error(self, message):
         print(f"❌ Error: {message}")
@@ -139,18 +176,9 @@ class DBHandler:
             return
 
         import time
-        from langchain_google_genai._common import GoogleGenerativeAIError
 
-        emb = GoogleGenerativeAIEmbeddings(
-            model=GEMINI_EMBED_MODEL,
-            google_api_key=GEMINI_API_KEY
-        )
-        try:
-            _ = emb.embed_query("ping")
-            print("Embedding warmup OK")
-        except Exception as e:
-            self._log_error(f"Failed to initialize Gemini Embeddings. Check API key. Error: {e}")
-            return
+        _ = self.emb.embed_query("ping")
+        print("Embedding warmup OK")
 
         if doc_split:
             splitter = RecursiveCharacterTextSplitter(
@@ -175,12 +203,12 @@ class DBHandler:
                 print(f"Creating vector store with first {len(first_batch)} documents (attempt {attempt + 1}/{max_retries})...")
                 vs = Chroma.from_documents(
                     documents=first_batch,
-                    embedding=emb,
+                    embedding=self.emb,
                     persist_directory=DB_DIR,
                     collection_name=collection_name,
                 )
                 break
-            except (GoogleGenerativeAIError, Exception) as e:
+            except Exception as e:
                 retry_delay = 5 * (attempt + 1)
                 print(f"⚠️  Error creating DB: {str(e)[:150]}...")
                 if attempt < max_retries - 1:
@@ -189,7 +217,7 @@ class DBHandler:
                 else:
                     self._log_error("Failed to create vector store after multiple retries.")
                     raise
-
+        
         # Add remaining documents in batches
         if vs and remaining_docs:
             total_batches = (len(remaining_docs) + batch_size - 1) // batch_size
@@ -203,7 +231,7 @@ class DBHandler:
                         vs.add_documents(batch)
                         time.sleep(1)  # Rate limiting
                         break
-                    except (GoogleGenerativeAIError, Exception) as e:
+                    except Exception as e:
                         retry_delay = 5 * (attempt + 1)
                         print(f"⚠️  Error on batch {batch_num}: {str(e)[:150]}...")
                         if attempt < max_retries - 1:
@@ -225,8 +253,8 @@ class DBHandler:
                 return ""
             docs = vecter_store.similarity_search(query, k=k)
             return "\n\n".join(
-                f"[DOC {i+1}]"
-                f"[id] {d.metadata.get('id','無')}\n"
+                #f"[DOC {i+1}]"
+                #f"[id] {d.metadata.get('id','無')}\n"
                 f"[標題] {d.metadata.get('title','無')}\n"
                 f"[來源] {d.metadata.get('source','無')}\n"
                 f"[日期] {d.metadata.get('date','無')}\n"
@@ -270,11 +298,7 @@ if __name__ == "__main__":
         # 3. Test retrieval (optional)
         print("\nTesting retrieval function...")
         try:
-            emb = GoogleGenerativeAIEmbeddings(
-                model=GEMINI_EMBED_MODEL,
-                google_api_key=GEMINI_API_KEY
-            )
-            _ = emb.embed_query("ping")
+            emb = dbHandler.getEmbeddings()
             vs = Chroma(persist_directory=DB_DIR, embedding_function=emb, collection_name=COLLECTION_NAME)
             
             query = input("請輸入文字查詢相似文章 (or type QUIT):\n> ")

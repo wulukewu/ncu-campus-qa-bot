@@ -1,6 +1,12 @@
+chromadb==0.4.16
+
 langchain>=0.3.0
 langchain-core
 langchain-chroma
+
+langchain_openai
+langchain_huggingface
+
 langchain-google-genai
 langchain-text-splitters
 pypdf
