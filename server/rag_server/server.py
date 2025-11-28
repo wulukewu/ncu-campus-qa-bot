@@ -10,7 +10,7 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict
 
-from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from DBHandler import DBHandler
@@ -61,10 +61,8 @@ def ensure_rag_ready(collection_name=COLLECTION_NAME):
         return
 
     try:
-        emb = GoogleGenerativeAIEmbeddings(
-            model=GEMINI_EMBED_MODEL,
-            google_api_key=GEMINI_API_KEY
-        )
+        # Use the embedding object from the global dbHandler
+        emb = dbHandler.emb
         _ = emb.embed_query("ping")
         vs = Chroma(persist_directory=DB_DIR, embedding_function=emb, collection_name=collection_name)
         _state["emb"] = emb
@@ -80,7 +78,7 @@ def health():
         "ok": True,
         "mode": MODE,
         "llm_model": GEMINI_FLASH_MODEL,
-        "embed_model": GEMINI_EMBED_MODEL,
+        "embed_model": dbHandler.emb.model,
         "db_path": DB_DIR,
         "ready": (_state["vs"] is not None) if MODE == "rag" else True,
         "init_error": _state["err"],

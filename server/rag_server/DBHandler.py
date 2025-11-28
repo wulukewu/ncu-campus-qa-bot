@@ -1,16 +1,19 @@
+import os
 import traceback
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 import pandas as pd
+import shutil
 from pathlib import Path
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_chroma import Chroma
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+from langchain_ollama import OllamaEmbeddings
+
 from langchain_core.documents import Document
-from dotenv import load_dotenv
 from pypdf import PdfReader
 
 # Load environment variables from .env file
+from dotenv import load_dotenv
 load_dotenv()
-
-from langchain_chroma import Chroma
 
 from constants import *
 
@@ -20,6 +23,22 @@ class DBHandler:
     def __init__(self):
         Path(DB_DIR).mkdir(parents=True, exist_ok=True)
         self.docs_dir = Path(DOCS_DIR)
+        self.emb=self.getEmbeddings()
+
+    def getEmbeddings(self):
+        # 優先從環境變數讀取 OLLAMA_BASE_URL
+        base_url = os.getenv("OLLAMA_BASE_URL")
+        if not base_url:
+            # 如果未設置環境變數，則根據是否在 Docker 中來決定預設值
+            if os.path.exists('/.dockerenv'):
+                base_url = "http://host.docker.internal:11434"
+            else:
+                base_url = "http://localhost:11434"
+        
+        return OllamaEmbeddings(
+            model=OLLAMA_EMBED_MODEL,
+            base_url=base_url
+        )
 
     def _log_error(self, message):
         print(f"❌ Error: {message}")
@@ -101,117 +120,92 @@ class DBHandler:
             }
             return [Document(page_content=full_content, metadata=metadata)]
 
+        except pd.errors.EmptyDataError:
+            self._log_info(f"Skipping empty or malformed CSV: {file_path.name}")
+            return []
         except Exception as e:
             self._log_error(f"Failed to process CSV {file_path.name}: {e}")
             return []
 
-    def build_all_docs(self) -> list[Document]:
-        """Scans the DOCS_DIR, processes all PDF and CSV files, and returns a list of Documents."""
-        all_docs = []
+    def build_all_docs(self):
+        """Scans the DOCS_DIR, processes all PDF and CSV files, and yields Documents one by one."""
         if not self.docs_dir.exists():
             self._log_error(f"Documents directory not found at: {self.docs_dir.resolve()}")
-            return []
+            return
 
         self._log_info(f"Scanning for documents in: {self.docs_dir.resolve()}")
         
-        # Find all PDF and CSV files recursively
         files = list(self.docs_dir.rglob("*.pdf")) + list(self.docs_dir.rglob("*.csv"))
         
         if not files:
             self._log_info("No PDF or CSV files found in the document directory.")
-            return []
+            return
             
         self._log_info(f"Found {len(files)} files to process.")
 
         for file_path in files:
             if file_path.suffix == ".pdf":
-                all_docs.extend(self._load_pdf(file_path))
+                yield from self._load_pdf(file_path)
             elif file_path.suffix == ".csv":
-                all_docs.extend(self._load_csv(file_path))
-        
-        self._log_info(f"Total loaded documents: {len(all_docs)}")
-        return all_docs
+                yield from self._load_csv(file_path)
 
     # 建向量庫
-    def buildDB(self, collection_name, docs, doc_split=False, batch_size=50):
-        if not docs:
-            self._log_error("No documents to build database. Aborting.")
-            return
+    def buildDB(self, collection_name, doc_split=False, batch_size=50):
+        docs_generator = self.build_all_docs()
 
-        import time
-        from langchain_google_genai._common import GoogleGenerativeAIError
-
-        emb = GoogleGenerativeAIEmbeddings(
-            model=GEMINI_EMBED_MODEL,
-            google_api_key=GEMINI_API_KEY
-        )
         try:
-            _ = emb.embed_query("ping")
-            print("Embedding warmup OK")
-        except Exception as e:
-            self._log_error(f"Failed to initialize Gemini Embeddings. Check API key. Error: {e}")
+            first_doc = [next(docs_generator)]
+        except StopIteration:
+            self._log_error("No documents found to build database. Aborting.")
             return
+        
+        import time
 
+        _ = self.emb.embed_query("ping")
+        print("Embedding warmup OK")
+
+        splitter = RecursiveCharacterTextSplitter(
+            chunk_size=2000, chunk_overlap=200,
+            separators=["\n\n", "\n", "。", "，", " ", ""],
+        )
+        
+        # Split the first document
         if doc_split:
-            splitter = RecursiveCharacterTextSplitter(
-                chunk_size=2000, chunk_overlap=200,
-                separators=["\n\n", "\n", "。", "，", " ", ""],
-            )
-            docs = splitter.split_documents(docs)
-            print(f"Split into chunks: {len(docs)}")
+            first_doc = splitter.split_documents(first_doc)
 
-        print(f"\nProcessing {len(docs)} documents in batches of {batch_size}...")
+        print(f"Creating vector store with the first document...")
+        
+        # Create vector store with the first doc
+        vs = Chroma.from_documents(
+            documents=first_doc,
+            embedding=self.emb,
+            persist_directory=DB_DIR,
+            collection_name=collection_name,
+        )
 
-        # Process in batches with retry logic
-        max_retries = 3
-        
-        # Create vector store with first batch
-        first_batch = docs[:batch_size]
-        remaining_docs = docs[batch_size:]
-        
-        vs = None
-        for attempt in range(max_retries):
-            try:
-                print(f"Creating vector store with first {len(first_batch)} documents (attempt {attempt + 1}/{max_retries})...")
-                vs = Chroma.from_documents(
-                    documents=first_batch,
-                    embedding=emb,
-                    persist_directory=DB_DIR,
-                    collection_name=collection_name,
-                )
-                break
-            except (GoogleGenerativeAIError, Exception) as e:
-                retry_delay = 5 * (attempt + 1)
-                print(f"⚠️  Error creating DB: {str(e)[:150]}...")
-                if attempt < max_retries - 1:
-                    print(f"   Retrying in {retry_delay} seconds...")
-                    time.sleep(retry_delay)
+        # Process the rest of the documents in batches
+        batch = []
+        for doc in docs_generator:
+            batch.append(doc)
+            if len(batch) >= batch_size:
+                if doc_split:
+                    split_batch = splitter.split_documents(batch)
+                    print(f"Processing batch of {len(batch)} docs (split into {len(split_batch)} chunks)...")
+                    vs.add_documents(split_batch)
                 else:
-                    self._log_error("Failed to create vector store after multiple retries.")
-                    raise
-
-        # Add remaining documents in batches
-        if vs and remaining_docs:
-            total_batches = (len(remaining_docs) + batch_size - 1) // batch_size
-            for i in range(0, len(remaining_docs), batch_size):
-                batch = remaining_docs[i:i + batch_size]
-                batch_num = (i // batch_size) + 1
-
-                for attempt in range(max_retries):
-                    try:
-                        print(f"Processing batch {batch_num}/{total_batches} ({len(batch)} docs, attempt {attempt + 1}/{max_retries})...")
-                        vs.add_documents(batch)
-                        time.sleep(1)  # Rate limiting
-                        break
-                    except (GoogleGenerativeAIError, Exception) as e:
-                        retry_delay = 5 * (attempt + 1)
-                        print(f"⚠️  Error on batch {batch_num}: {str(e)[:150]}...")
-                        if attempt < max_retries - 1:
-                            print(f"   Retrying in {retry_delay} seconds...")
-                            time.sleep(retry_delay)
-                        else:
-                            print(f"❌ Failed to process batch {batch_num} after {max_retries} attempts. Skipping.")
-                            break
+                    print(f"Processing batch of {len(batch)} docs...")
+                    vs.add_documents(batch)
+                batch = []
+        
+        # Add any remaining documents in the last batch
+        if batch:
+            if doc_split:
+                split_batch = splitter.split_documents(batch)
+                print(f"Processing final batch of {len(batch)} docs (split into {len(split_batch)} chunks)...")
+                vs.add_documents(split_batch)
+            else:
+                print(f"Processing final batch of {len(batch)} docs...")
+                vs.add_documents(batch)
 
         print(f"\n✅ Successfully processed documents.")
         print(f"Chroma DB built at: {Path(DB_DIR).resolve()}")
@@ -225,8 +219,8 @@ class DBHandler:
                 return ""
             docs = vecter_store.similarity_search(query, k=k)
             return "\n\n".join(
-                f"[DOC {i+1}]"
-                f"[id] {d.metadata.get('id','無')}\n"
+                #f"[DOC {i+1}]"
+                #f"[id] {d.metadata.get('id','無')}\n"
                 f"[標題] {d.metadata.get('title','無')}\n"
                 f"[來源] {d.metadata.get('source','無')}\n"
                 f"[日期] {d.metadata.get('date','無')}\n"
@@ -246,48 +240,30 @@ if __name__ == "__main__":
     print(f"\n{'='*80}")
     print(f"Starting database build from all documents...")
     
-    # 1. Load all documents from the specified directory
-    all_docs = dbHandler.build_all_docs()
+    dbHandler.buildDB(
+        collection_name=COLLECTION_NAME,
+        doc_split=True,
+        batch_size=100  # Larger batch size can be more efficient if memory allows
+    )
     
-    if all_docs:
-        print(f"Total documents loaded: {len(all_docs)}")
-        # You can uncomment the next line to inspect a sample document
-        # print("Sample Doc:", all_docs[0])
-        print(f"{'='*80}\n")
-        
-        # 2. Build the database with the loaded documents
-        dbHandler.buildDB(
-            collection_name=COLLECTION_NAME,
-            docs=all_docs,
-            doc_split=True,  # Splitting is good for larger docs
-            batch_size=25    # Smaller batches are more reliable
-        )
-        
-        print("\n" + "="*80)
-        print("✅ Database build process finished.")
-        print("="*80)
+    print("\n" + "="*80)
+    print("✅ Database build process finished.")
+    print("="*80)
 
-        # 3. Test retrieval (optional)
-        print("\nTesting retrieval function...")
-        try:
-            emb = GoogleGenerativeAIEmbeddings(
-                model=GEMINI_EMBED_MODEL,
-                google_api_key=GEMINI_API_KEY
-            )
-            _ = emb.embed_query("ping")
-            vs = Chroma(persist_directory=DB_DIR, embedding_function=emb, collection_name=COLLECTION_NAME)
-            
-            query = input("請輸入文字查詢相似文章 (or type QUIT):\n> ")
-            while query.upper() != "QUIT":
-                if query:
-                    context = dbHandler.retrieve_context(vs, query, 5)
-                    print("\n--- Retrieved Context ---\n")
-                    print(context)
-                    print("\n--- End of Context ---\n")
-                query = input("> ")
-        except Exception as e:
-            print(f"An error occurred during test retrieval: {e}")
-
-    else:
-        print("\nNo documents were loaded. Database build aborted.")
-        print("="*80)    
+    # 3. Test retrieval (optional)
+    print("\nTesting retrieval function...")
+    try:
+        emb = dbHandler.getEmbeddings()
+        vs = Chroma(persist_directory=DB_DIR, embedding_function=emb, collection_name=COLLECTION_NAME)
+        
+        query = input("請輸入文字查詢相似文章 (or type QUIT):\n> ")
+        while query.upper() != "QUIT":
+            if query:
+                context = dbHandler.retrieve_context(vs, query, 5)
+                print("\n--- Retrieved Context ---\n")
+                print(context)
+                print("\n--- End of Context ---\n")
+            query = input("> ")
+    except Exception as e:
+        print(f"An error occurred during test retrieval: {e}")
+    
