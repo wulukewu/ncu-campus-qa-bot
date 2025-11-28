@@ -1,5 +1,8 @@
 FROM ollama/ollama
 
+# Install curl
+RUN apt-get update && apt-get install -y curl
+
 # Copy the setup script into the container
 COPY setup_ollama.sh /usr/local/bin/setup_ollama.sh
 
