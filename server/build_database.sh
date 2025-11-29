@@ -12,7 +12,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 RAG_SERVER_DIR="$SCRIPT_DIR/rag_server"
 
 echo "╔════════════════════════════════════════════════════════════════════╗"
-echo "║       NCU Campus QA Bot - RAG Database Builder                    ║"
+echo "║       NCU Campus QA Bot - RAG Database Builder                     ║"
 echo "╚════════════════════════════════════════════════════════════════════╝"
 echo ""
 

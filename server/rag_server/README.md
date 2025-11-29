@@ -1,23 +1,30 @@
 # rag_server
-用於儲存向量資料庫以及檢索向量資料庫 (使用 Gemini API)
+實作RAG功能
+* DBHandler.py: 儲存向量資料庫以及檢索向量資料庫
+* server.py: 使用FastAPI建立rag server，LLM根據DBHandler檢索到的資料做回覆
 
 ```
-news                 #公告資料
+chroma_db-qwen3/     #已經建立好的向量庫
+.env.example         #環境變數的範例 
 constants.py         #放路徑/模型名稱等通用常數
 DBHandler.py         #處理向量庫的
 requirements.txt     #必要套件
 server.py            #rag server
 ```
-> 目前只針對news/csie_news.csv做向量庫
 
 ## 設定
+### 1. Ollama
+取得embedding模型
+```bash
+ollama pull qwen3-embedding:0.6b
+```
 
-### 1. 安裝必要套件
+### 2. 安裝必要套件
 ```bash
 pip install -r requirements.txt       
 ```
 
-### 2. 設定環境變數
+### 3. 設定環境變數
 複製 `.env.example` 為 `.env` 並設定你的 Gemini API Key:
 ```bash
 cp .env.example .env
@@ -28,17 +35,15 @@ cp .env.example .env
 GEMINI_API_KEY=your_gemini_api_key_here
 MODE=rag
 ```
-
 取得 Gemini API Key: https://aistudio.google.com/app/apikey
 
-### 3. 建向量庫
+### 4. 建向量庫
 ```bash
 python DBHandler.py
 ```
+將chroma_db-qwen3命名為chroma_db作為RAG使用的向量庫可跳過此步驟
 
-可以把 main 裡面註解去掉測試檢索功能
-
-### 4. 啟動 RAG Server
+### 5. 啟動 RAG Server
 ```bash
 uvicorn server:app --host 127.0.0.1 --port 8000
 ```
@@ -53,5 +58,7 @@ uvicorn server:app --host 127.0.0.1 --port 8000
 
 ## 使用的模型
 
-- **Embedding**: `text-embedding-004` (Gemini)
+- **Embedding**: `qwen3-embedding:0.6b` (使用Ollama在本地端跑)
 - **LLM**: `gemini-2.5-flash` (Gemini Flash)
+
+> embedding 模型參考: https://docs.google.com/spreadsheets/d/1zad1tMFp7OmNjUvm_a-Ni22av2uBmqYclVRgJQGUtl0/edit?usp=drive_linkhttps://docs.google.com/spreadsheets/d/1zad1tMFp7OmNjUvm_a-Ni22av2uBmqYclVRgJQGUtl0/edit?usp=drive_link
