@@ -33,7 +33,7 @@ SYSTEM_PROMPT = (
     "回答規則：\n"
     "1. **盡力回答**：根據提供的「參考資料」，盡可能完整回答使用者的問題。\n"
     "2. **誠實為上**：如果資料中沒有相關資訊，請誠實地回答「根據我目前所知的資料，無法回答您的問題。」\n"
-    "3. **引用來源**：在回答的結尾，請務必附上資料來源，格式為「資料來源：[來源檔案名稱]」。如果有多個來源，請都列出來。\n"
+    "3. **引用來源**：在回答的結尾，請務必附上資料來源，格式為「資料來源：[檔案名稱](來源)」。如果有多個來源，請都列出來。\n"
     "4. **保持簡潔**：回答力求簡潔、直接，並使用繁體中文。\n\n"
     "---參考資料---\n"
     "{context}\n"
@@ -113,7 +113,7 @@ def chat(req: ChatCompletionRequest):
             ensure_rag_ready()
             context = dbHandler.retrieve_context(_state['vs'], last_user, req.top_k or TOP_K)
             sys_prompt = SYSTEM_PROMPT.format(context=context)
-            ans = llm.invoke([HumanMessage(content=sys_prompt+last_user)]).content
+            ans = llm.invoke([SystemMessage(sys_prompt), HumanMessage(content=last_user)]).content
         else:
             ans = llm.invoke(last_user).content
 

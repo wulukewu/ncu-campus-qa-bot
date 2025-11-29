@@ -1,14 +1,11 @@
 import os
 import traceback
 import pandas as pd
-import shutil
 from pathlib import Path
 from langchain_chroma import Chroma
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-
-from langchain_ollama import OllamaEmbeddings
-
 from langchain_core.documents import Document
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_ollama import OllamaEmbeddings
 from pypdf import PdfReader
 
 # Load environment variables from .env file
@@ -161,8 +158,6 @@ class DBHandler:
         except StopIteration:
             self._log_error("No documents found to build database. Aborting.")
             return
-        
-        import time
 
         _ = self.emb.embed_query("ping")
         print("Embedding warmup OK")
@@ -221,13 +216,22 @@ class DBHandler:
                 self._log_error("Vector store is not available.")
                 return ""
             docs = vecter_store.similarity_search(query, k=k)
+
+            sources = []
+            for d in docs:
+                source = d.metadata.get('source','無')
+                if not str(source).startswith("https"):
+                    source = str(source)
+                    source = source[source.rfind('/')+1:]
+                sources.append(source)
+
             return "\n\n".join(
                 #f"[DOC {i+1}]"
                 #f"[id] {d.metadata.get('id','無')}\n"
-                f"[標題] {d.metadata.get('title','無')}\n"
-                f"[來源] {d.metadata.get('source','無')}\n"
+                f"[檔案名稱] {d.metadata.get('title','無')}\n"
+                f"[來源] {sources[i]}\n"
                 f"[日期] {d.metadata.get('date','無')}\n"
-                f"[內容]\n{d.page_content}"
+                f"[檔案內容]:\n{d.page_content}"
                 for i, d in enumerate(docs)
             )
         except Exception as e:
