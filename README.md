@@ -1,4 +1,7 @@
 # NCU Campus QA Bot
+<p align="center">
+  <img src="assets/icon.png" width="250px" alt="Project Icon">
+</p>
 
 This project aims to create a QA bot for National Central University (NCU) campus information using Retrieval-Augmented Generation (RAG) and integrate it with a LINE Bot.
 
