@@ -1,0 +1,56 @@
+學籍、成績、畢業審核系統使用權限申請表
+Application for Access to the Academic Record System, the Grades System, 
+and the Graduation Requirements System
+
+申請類別 Type of application:
+□新增帳號 Create a new account    □權限修改 Change of authorization
+                              年      月      日 (yyyy/mm/dd)
+申
+請
+人
+Applicant 
+單  位
+Department/Institution
+
+姓  名
+Name
+
+校內分機
+Campus Ext.
+
+個人校內E-mail
+( Email Provided by NCU )
+
+PORTAL帳號
+(Portal Account)
+
+
+
+ 承辦業務(系所/學程)名稱：Please specify the department/institution/program involved:
+
+----------------------------------------------------------------------
+學位別
+Degree
+□ 學士班Undergraduate Program  □ 碩士班Master’s Program  □ 博士班Doctoral Program
+□ 在職專班In-service Master’s Program
+□ 產業專班Industrial Master’s Program                          (請勾選Please tick a box.)
+系統功能別
+System Function 
+□ 學籍查詢Enrollment status
+□ 註冊檢核Admission requirements
+□ 成績查詢Academic record
+□ 逕攻博士 Direct admission to a PhD program 
+□ 異動資料查詢Inquiry into data change  
+□ 畢業審核 Review of graduation qualifications
+□ 離校檢核Verification of school leaving procedure
+□ 專業學程審核Credit program qualifications               (請勾選Please tick a box.)
+【注意事項】
+Point for Attention                 
+因公務使用學生資料時，請確實遵守『個人資料保護法及其施行細則』之相關規定，請申請人及使用單位謹慎使用，並善盡資料保密及保管之責任。Please comply with the Personal Information Protection Act when using student information in the context of official business. The applicant and the concerned institute shall use the personal information cautiously, safeguard it, and keep it confidential.
+申請單位 
+                                    主管核章：                      
+            Ratification of the Person in Charge
+             of the Applying Unit
+【單位主管核章後逕送註冊組】
+This application form has to be submitted to the Division of Registrar directly 
+1120612

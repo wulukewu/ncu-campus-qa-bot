@@ -1,0 +1,76 @@
+國立中央大學學生論文比對結果報告書
+The Report of National Central University Student Thesis Similarity Check
+114.11.19
+姓名
+Name
+
+系所
+Department/Institute
+
+學號
+Student ID
+
+學年度
+Academic Year
+
+身份
+Program
+□碩士班 Master's Program
+□碩士在職專班 In-Service Master's Program
+□博士班 Doctoral Program
+提交版本
+Version
+□初稿：申請學位考試  Draft: The version submitted for the degree examination
+□完稿：畢業離校時繳交系所及上傳本校圖書館之版本  Final Version: The version submitted to the department/institute and uploaded to the NCU Library upon graduation clearance
+論文題目
+Thesis Title
+
+論文公開選項
+Thesis Release Option
+口試通過後， □立即公開 □申請延後公開。
+After passing the oral defense: □Release immediately □ Apply for delayed release
+檢測軟體
+Detection Software
+
+論文形式
+Thesis Format
+□傳統論文Monograph Thesis 
+□篇章集結式彙編論文 Compilation-based Thesis by Publication
+□整合式彙編論文 Integrated Thesis by Publication
+檢測日期
+Date of Detection
+
+篩選條件
+Filter Criteria
+
+相似度比對截圖
+
+Similarity Comparison Screenshot
+請務必依照說明之範本截圖
+Please ensure that you upload a screenshot based on the specified template.
+檢附文件Documents Required
+論文相似度比對報告電子回條 (須包含論文封面、作者姓名、檔案名稱、檔案大小、總頁數、上傳日期)
+The Digital Receipt or Similarity Report of the Submitted Thesis (Should contain thesis cover page, author, file name, file size, page count, and submission date)
+系所規定標準值
+Standard Threshold Specified by Department/Institute
+
+相似度指數
+Similarity Index
+
+指導教授簽名
+Thesis Advisor's Signature
+
+日期
+Date
+
+學生簽名
+Student's Signature
+
+日期
+Date
+
+相關條文
+Relevant Regulation
+依本校「博士班、碩士班研究生學位考試細則」第五條第二項及第十二條第一項規定辦理
+National Central University Regulations on Degree Examinations for Postgraduate Students Article 5, Paragraph 2 and Article 12, Paragraph 1
+
