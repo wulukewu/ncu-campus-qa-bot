@@ -2,6 +2,8 @@ from __future__ import annotations
 import os, time, argparse, traceback
 from typing import List, Optional
 from dotenv import load_dotenv
+from UserDB import UserDB
+from Notification import push_new_announcement
 
 # Load environment variables from .env file
 load_dotenv()
@@ -9,6 +11,11 @@ load_dotenv()
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict
+from linebot.v3 import WebhookHandler
+from linebot.v3.exceptions import InvalidSignatureError
+from linebot.v3.webhooks import MessageEvent, TextMessageContent
+from Notification import CHANNEL_SECRET 
+from fastapi import Request, HTTPException, Response
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
@@ -20,7 +27,7 @@ from langchain_chroma import Chroma
 from constants import *
 
 app = FastAPI(title="NCU RAG Server with Gemini")
-
+handler = WebhookHandler(CHANNEL_SECRET)
 parser = argparse.ArgumentParser()
 parser.add_argument("--mode", choices=["rag", "llm"], default=os.getenv("MODE", "rag"))
 args, _ = parser.parse_known_args()
@@ -42,7 +49,7 @@ SYSTEM_PROMPT = (
 
 #用於儲存向量資料庫以及檢索向量資料庫
 dbHandler = DBHandler()
-
+user_db = UserDB()
 class Message(BaseModel):
     model_config = ConfigDict(extra="allow")
     role: str
@@ -55,6 +62,11 @@ class ChatCompletionRequest(BaseModel):
     temperature: Optional[float] = 0.1
     top_k: Optional[int] = None
     stream: Optional[bool] = False
+
+class SubscriptionRequest(BaseModel):
+    user_id: str
+    line_user_id: str 
+    topic: str = "資電院公告"
 
 def ensure_rag_ready(collection_name=COLLECTION_NAME):
     if _state["vs"] is not None:
@@ -139,3 +151,39 @@ def chat(req: ChatCompletionRequest):
         print("[/v1/chat/completions] error:", e)
         traceback.print_exc()
         return JSONResponse(status_code=500, content={"error": str(e), "trace": traceback.format_exc()})
+    
+@app.post("/v1/subscribe")
+def subscribe(req: SubscriptionRequest):
+    try:
+        supported_topics = ["資電院公告"]
+        if req.topic not in supported_topics:
+            return JSONResponse(status_code=400, content={"error": f"Topic '{req.topic}' is not supported. Supported topics: {', '.join(supported_topics)}"})
+            
+        user_db.subscribe(req.user_id, req.line_user_id, req.topic)
+        
+        return JSONResponse(content={
+            "status": "success",
+            "message": f"User {req.user_id} successfully subscribed to {req.topic} using LINE User ID ending ...{req.line_user_id[-4:]}"
+        })
+    except Exception as e:
+        print("[/v1/subscribe] error:", e)
+        traceback.print_exc()
+        return JSONResponse(status_code=500, content={"error": str(e), "trace": traceback.format_exc()})
+@app.post("/callback") 
+async def callback(request: Request):
+    signature = request.headers.get("X-Line-Signature", "")
+    body = await request.body()
+    body_str = body.decode()
+
+    try:
+        handler.handle(body_str, signature)
+    except InvalidSignatureError:
+        print("❌ Invalid signature.")
+        raise HTTPException(status_code=400, detail="Invalid signature")
+
+    return Response(status_code=200) 
+
+@handler.add(MessageEvent, message=TextMessageContent)
+def handle_message(event: MessageEvent):
+    print(f"✅ Received LINE Message from user {event.source.user_id}: {event.message.text}")
+    pass

@@ -238,6 +238,36 @@ class DBHandler:
             self._log_error(f"Retrieve error: {e}")
             traceback.print_exc()
             return ""
+    def add_documents(self, new_docs: list[Document], collection_name=COLLECTION_NAME, doc_split=True) -> int:
+
+        if not new_docs:
+            self._log_info("No new documents to add.")
+            return 0
+        
+        try:
+            _ = self.emb.embed_query("ping")
+            
+            vs = Chroma(persist_directory=DB_DIR, embedding_function=self.emb, collection_name=collection_name)
+
+            docs_to_add = new_docs
+            if doc_split:
+                splitter = RecursiveCharacterTextSplitter(
+                    chunk_size=2000, chunk_overlap=200,
+                    separators=["\n\n", "\n", "。", "，", " ", ""],
+                )
+                docs_to_add = splitter.split_documents(new_docs)
+            
+            self._log_info(f"Adding {len(new_docs)} new documents (split into {len(docs_to_add)} chunks) to Chroma DB.")
+            
+            vs.add_documents(docs_to_add)
+            
+            self._log_info("✅ Successfully added documents to vector store.")
+            return len(new_docs)
+
+        except Exception as e:
+            self._log_error(f"Failed to add documents to vector store: {e}")
+            traceback.print_exc()
+            return 0            
 
 
 # 用來建向量庫的
