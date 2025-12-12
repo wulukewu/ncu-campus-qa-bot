@@ -62,3 +62,5 @@ uvicorn server:app --host 127.0.0.1 --port 8000
 - **LLM**: `gemini-2.5-flash` (Gemini Flash)
 
 > embedding 模型參考: https://docs.google.com/spreadsheets/d/1zad1tMFp7OmNjUvm_a-Ni22av2uBmqYclVRgJQGUtl0/edit?usp=drive_linkhttps://docs.google.com/spreadsheets/d/1zad1tMFp7OmNjUvm_a-Ni22av2uBmqYclVRgJQGUtl0/edit?usp=drive_link
+
+
