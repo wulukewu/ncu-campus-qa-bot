@@ -241,3 +241,10 @@ We use a Docker Compose service to run the `build_database.sh` script in an isol
     *   Rebuild the database after making any changes to documents or `DBHandler.py`.
 
 Please note: The Docker Compose setup assumes a specific project structure. If you modify the directory layout, you may need to adjust the `volumes` and `build.context` paths in the `docker-compose` files accordingly.
+
+
+關於line 推播
+額外的是token,secret,gemini api key要改 分別在linebot rag_server中的env.改
+然後CMD中跑
+curl -X POST "http://127.0.0.1:8000/v1/subscribe" -H "Content-Type: application/json" -d "{\"user_id\": \"(你的userid隨便取就可以)\", \"line_user_id\": \"(在basic setting那裏 你的line user id)\", \"topic\": \"資電院公告\"}" 
+然後CMD中執行python crawler_worker.py
