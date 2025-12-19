@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 import shutil
 import pandas as pd
@@ -6,12 +7,41 @@ from datetime import datetime
 from pathlib import Path
 from typing import List 
 from apscheduler.schedulers.blocking import BlockingScheduler
+from dotenv import load_dotenv
+
+# Add linebot directory to sys.path to allow importing app.py directly
+# We cannot verify "import linebot" because linebot is also a pip package name
+# We cannot "import app" because rag_server has its own app.py
+current_dir = Path(__file__).resolve().parent
+server_dir = current_dir.parent
+linebot_dir = server_dir / "linebot"
+
+# Load linebot .env
+linebot_env_path = linebot_dir / ".env"
+if linebot_env_path.exists():
+    print(f"Loading environment from {linebot_env_path}")
+    load_dotenv(linebot_env_path)
+
+# Use importlib to load linebot/app.py as a distinct module to avoid name collision
+try:
+    import importlib.util
+    import sys
+    
+    spec = importlib.util.spec_from_file_location("linebot_server_app", str(linebot_dir / "app.py"))
+    line_bot_app = importlib.util.module_from_spec(spec)
+    sys.modules["linebot_server_app"] = line_bot_app
+    spec.loader.exec_module(line_bot_app)
+    
+    print("✅ Successfully loaded linebot/app.py as linebot_server_app")
+except Exception as e:
+    print(f"Warning: Could not import linebot app: {e}")
+    line_bot_app = None
 
 from DBHandler import DBHandler
 from UserDB import UserDB
 from Notification import push_new_announcement
 
-import app
+import app as crawler_app
 from langchain_core.documents import Document 
 
 CRAWL_CSV_PATH = Path("docs/news.csv")
@@ -91,7 +121,7 @@ def scheduled_task(is_initial_run: bool = False):
             print(f"Backed up old CSV to {BACKUP_CSV_PATH}")
 
     try:
-        app.crawl(
+        crawler_app.crawl(
             CRAWL_CATEGORIES,
             output_csv=str(CRAWL_CSV_PATH),
             delay=0.5
